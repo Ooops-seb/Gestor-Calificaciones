@@ -3,7 +3,7 @@
 |---|---|
 | **Materia** | Modelos de Procesos de Desarrollo De Ingeníera de Software|
 |**Universidad**|Universidad de las Fuerzas Armadas - ESPE|
-|**Pais**|Ecuador|
+|**País**|Ecuador|
 |**Año**|2023|
 
 _**Última fecha de modificación:** 7 de julio 2023_
