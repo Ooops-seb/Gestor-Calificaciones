@@ -5,7 +5,8 @@
 |**Universidad**|Universidad de las Fuerzas Armadas - ESPE|
 |**Pais**|Ecuador|
 |**Año**|2023|
-|**Última fecha de modificación**| 7 de julio 2023|
+
+_**Última fecha de modificación:** 7 de julio 2023_
 
 # Problemática
 
