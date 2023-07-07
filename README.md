@@ -4,7 +4,8 @@
 | **Materia** | Modelos de Procesos de Desarrollo De Ingeníera de Software|
 |**Universidad**|Universidad de las Fuerzas Armadas - ESPE|
 |**Pais**|Ecuador|
-|**Año:**|2023|
+|**Año**|2023|
+|**Última fecha de modificación**| 7 de julio 2023|
 
 # Problemática
 
@@ -52,5 +53,3 @@ _(En proceso)_
   * Secuencia
   * Clases
   * Entidades / Relación
-  
-_Ultima fecha de modificación: 7 de julio 2023_
