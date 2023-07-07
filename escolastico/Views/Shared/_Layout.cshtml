@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Name"] = "Latacunga";
+    ViewData["Author"] = "Erik Villarreal";
+    ViewData["Address_Dir"] = "Parroquia Belisario Quevedo, Barrio el Forastero";
+    ViewData["Address_City"] = "Latacunga - Ecuador";
+    ViewData["Phone"] = "(03) 281 0206";
+    ViewData["Web"] = "https://espe-el.espe.edu.ec/";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="shortcut icon" href="~/assets/logo.png" type="image/x-icon" />
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/css/assets.css" rel="stylesheet" />
+</head>
+<body>
+    <header class="flex-row centering color-wine">
+        <a asp-controller="Home" asp-action="Index" class="flex-row centering">
+            <img class="logo" src="~/assets/logo.png"/>
+            <span class="txt-bold txt-white txt-f20px">@ViewBag.Name</span>
+        </a>
+    </header>
+    <main role="main" class="color-d-blue">
+        @RenderBody()
+    </main>
+    <footer class="legal flex-row centering">
+        <span>&copy; 2023 <a href="#inicio" class="txt-bold txt-black">@ViewBag.Name School</a> - Desarrollado por <a target="_blank" href="https://github.com/Ooops-seb" class="txt-bold txt-black">@ViewBag.Author</a></span>
+    </footer>
+</body>
+</html>

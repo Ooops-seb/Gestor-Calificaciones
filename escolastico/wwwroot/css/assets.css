@@ -1,0 +1,87 @@
+﻿.txt-white {
+    color: white
+}
+
+.txt-black {
+    color: black
+}
+
+.color-brown {
+    background-color: #786844
+}
+
+.color-magenta {
+    background-color: #bd127d
+}
+
+.color-d-blue {
+    background-color: #094c79
+}
+
+.color-l-blue {
+    background-color: #0492d9
+}
+
+.color-gray {
+    background-color: #4a5463
+}
+
+.color-wine {
+    background-color: #783c62
+}
+
+.color-yellow {
+    background-color: #f2a40c
+}
+
+.color-white {
+    background-color: white
+}
+
+.txt-bold {
+    font-weight: bold
+}
+
+.txt-f16px {
+    font-size: 16px
+}
+
+.txt-f20px {
+    font-size: 20px
+}
+
+.txt-f24px {
+    font-size: 24px
+}
+
+.txt-f28px {
+    font-size: 28px
+}
+
+.txt-center {
+    text-align: center
+}
+
+.txt-color-p {
+    color: black
+}
+
+.flex-column{
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.centering {
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+}
+
+.borde-top {
+    border-top: 1px solid #000;
+}
