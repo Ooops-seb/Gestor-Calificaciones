@@ -48,7 +48,7 @@ _(En proceso)_
 ### Documentación:
 * Lenguajes: HTML, CSS, C#
 * Base de datos: SQL Server
-* Framework: ASP.NET, Entity Framework
+* Framework: ASP.NET Core 7, Entity Framework
 * Diagramas: _(En proceso)_
   * Casos de uso
   * Secuencia
