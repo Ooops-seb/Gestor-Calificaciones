@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewData["Title"] = "Registro";
+}
+
+<div class="color-white flex-column centering">
+    <div class="singup-container color-d-blue">
+        <header class="txt-center">
+            <h1 class="txt-white txt-f28px txt-bold">@ViewBag.Title</h1>
+        </header>
+        <div class="singup-body flex-column centering color-l-blue">
+            <p class="color-l-gray txt-white">
+                Recuerda que tu usuario sera validado previamente antes de poder ser usado. 
+                El departamento de TICs revisará tu postulación, una vez validado serás notificado por correo.
+            </p>
+            <h2 class="txt-f20px txt-white txt-bold">Datos personales:</h2>
+            <form asp-controller="Sing" asp-action="Apply" method="post" class="singup-data flex-column centering">
+                <span class="txt-bold">Nombre:</span>
+                <input class="input-props" type="text" />
+                <span class="txt-bold">Apellido:</span>
+                <input class="input-props" type="text"/>
+                <span class="txt-bold">Fecha Nacimiento:</span>
+                <input class="input-props" type="date"/>
+                <span class="txt-bold">Género:</span>
+                <input class="input-props" type="text"/>
+                <span class="txt-bold">Teléfono:</span>
+                <input class="input-props" type="tel"/>
+                <span class="txt-bold">Correo:</span>
+                <input class="input-props" type="email"/>
+                <span class="txt-bold">Contraseña:</span>
+                <input class="input-props" type="password"/>
+                <span class="txt-bold">Rol:</span>
+                <input class="input-props" type="text"/>
+                <span class="txt-bold">
+                    <input type="checkbox" /> 
+                    Aceptar términos y condiciones
+                </span>
+                <input type="submit" value="Enviar" class="submit-props btn btn-prop color-yellow txt-f16px txt-white txt-bold"/>
+            </form>
+        </div>
+        <footer class="txt-f12px txt-center txt-white">¿Ya posees una cuenta? <a asp-controller="Sing" asp-action="In" class="txt-white txt-bold">Iniciar Sesión</a> </footer>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewData["Title"] = "Iniciar Sesión";
+}
+
+<div class="color-white flex-column centering">
+    <div class="login-container color-d-blue">
+        <header class="txt-center">
+            <h1 class="txt-white txt-f28px txt-bold">@ViewBag.Title</h1>
+        </header>
+        <div class="flex-row centering color-l-blue">
+            <img src="~/assets/usuario.png"/>
+            <form asp-controller="Escolastic" asp-action="Index" method="post" class="login-content flex-column centering">
+                <span class="txt-white txt-bold txt-f20px">Usuario</span>
+                <input class="input-props" type="text" placeholder="Ingrese su usuario"/>
+                <span class="txt-white txt-bold txt-f20px">Contraseña</span>
+                <input class="input-props" type="password" placeholder="Ingrese su contraseña" />
+                <input type="submit" value="Ingresar" class="submit-props btn btn-prop centering txt-white txt-bold txt-f16px color-yellow"/>
+            </form>
+        </div>
+        <footer class="txt-f12px txt-center txt-white">¿No tienes una cuenta? <a asp-controller="Sing" asp-action="Up" class="txt-white txt-bold">Registrate</a> </footer>
+    </div>
+</div>

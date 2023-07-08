@@ -6,6 +6,10 @@
     color: black
 }
 
+.txt-gray {
+    color: #4a5463
+}
+
 .color-brown {
     background-color: #786844
 }
@@ -26,6 +30,10 @@
     background-color: #4a5463
 }
 
+.color-l-gray {
+    background-color: #a1a1a1
+}
+
 .color-wine {
     background-color: #783c62
 }
@@ -41,6 +49,11 @@
 .txt-bold {
     font-weight: bold
 }
+
+.txt-f12px {
+    font-size: 12px
+}
+
 
 .txt-f16px {
     font-size: 16px
@@ -80,8 +93,4 @@
     align-items: center;
     justify-content: center;
     justify-items: center;
-}
-
-.borde-top {
-    border-top: 1px solid #000;
 }
