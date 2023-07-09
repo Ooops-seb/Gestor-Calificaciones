@@ -9,32 +9,48 @@
             <h1 class="txt-white txt-f28px txt-bold">@ViewBag.Title</h1>
         </header>
         <div class="singup-body flex-column centering color-l-blue">
-            <p class="color-l-gray txt-white">
-                Recuerda que tu usuario sera validado previamente antes de poder ser usado. 
-                El departamento de TICs revisará tu postulación, una vez validado serás notificado por correo.
-            </p>
+            <div class="flex-row margin-a-20">
+                <img src="~/assets/register.png"/>
+                <p class="color-l-gray txt-white">
+                    Ingresa tu número de identificación para verificar tus datos. Si encontramos
+                    una coincidencia pasarás a la creación de tu usuario y contraseña personal.
+                </p>
+            </div>
             <h2 class="txt-f20px txt-white txt-bold">Datos personales:</h2>
-            <form asp-controller="Sing" asp-action="Apply" method="post" class="singup-data flex-column centering">
-                <span class="txt-bold">Nombre:</span>
-                <input class="input-props" type="text" />
-                <span class="txt-bold">Apellido:</span>
-                <input class="input-props" type="text"/>
-                <span class="txt-bold">Fecha Nacimiento:</span>
-                <input class="input-props" type="date"/>
-                <span class="txt-bold">Género:</span>
-                <input class="input-props" type="text"/>
-                <span class="txt-bold">Teléfono:</span>
-                <input class="input-props" type="tel"/>
-                <span class="txt-bold">Correo:</span>
-                <input class="input-props" type="email"/>
-                <span class="txt-bold">Contraseña:</span>
-                <input class="input-props" type="password"/>
-                <span class="txt-bold">Rol:</span>
-                <input class="input-props" type="text"/>
-                <span class="txt-bold">
-                    <input type="checkbox" /> 
-                    Aceptar términos y condiciones
-                </span>
+            <form method="post" class="singup-data flex-column centering">
+                <div class="flex-row centering gap-10">
+                    <span class="txt-bold">ID:</span>
+                    <input class="input-props" type="text" />
+                    <button id="search-button" type="submit"><img class="search" src="~/assets/search.png" /></button>
+                </div>
+            </form>
+            <form asp-controller="Sing" asp-action="Apply" class="flex-column centering gap-10">
+                <h2>@ViewData["MSG"]</h2>
+                <div class="flex-row color-l-gray padding-a-20 border-n-r margin-a-20 centering gap-20">
+                    <img class="color-green border-n-r" src="~/assets/verify.png" />
+                    <div class="flex-column centering gap-10">
+                        <span class="txt-bold txt-white">Nombre:</span>
+                        <input class="input-props" type="text" />
+                        <span class="txt-bold txt-white">Apellido:</span>
+                        <input class="input-props" type="text"/>
+                        <span class="txt-bold txt-white">Rol:</span>
+                        <input class="input-props" type="text" />
+                    </div>
+                </div>
+                <div class="flex-column centering gap-10">
+                    <span class="txt-bold txt-white">Usuario:</span>
+                    <input class="input-props" type="email"/>
+                    <div class="flex-row centering margin-a-10 gap-10">
+                        <span class="txt-bold txt-white">Contraseña:</span>
+                        <input class="input-props" type="password"/>
+                        <span class="txt-bold txt-white">Verifica tu contraseña:</span>
+                        <input class="input-props" type="password" />
+                    </div>
+                    <span class="flex-row centering txt-bold">
+                        <input class="check-box" type="checkbox" /> 
+                        Aceptar términos y condiciones
+                    </span>
+                </div>
                 <input type="submit" value="Enviar" class="submit-props btn btn-prop color-yellow txt-f16px txt-white txt-bold"/>
             </form>
         </div>

@@ -133,9 +133,6 @@ a:hover {
     border-radius: 10px;
 }
 
-.singup-body {
-    padding: 20px 0;
-}
 
 .singup-container p {
     width: 400px;
@@ -152,8 +149,16 @@ a:hover {
     margin: 20px;
 }
 
+.singup-body {
+    padding: 20px 0;
+}
+
 .singup-data span{
     gap: 10px;
+}
+
+.singup-body img {
+    height: 150px;
 }
 
 .space-between {
@@ -162,4 +167,38 @@ a:hover {
     align-content: space-between;
     align-items: center;
     justify-content: space-between;
+}
+
+.select-options {
+    width: 120px;
+    height: 30px;
+    padding: 5px;
+    border: none;
+    border-radius: 10px;
+}
+
+.check-box {
+    width: 20px;
+    height: 20px;
+}
+
+.check-box:hover {
+    cursor: pointer;
+}
+
+.singup-data img {
+    height: 30px;
+}
+
+.singup-data button {
+    background-color: transparent;
+    border: none;
+}
+
+.singup-data img:hover {
+    transform: scale(1.2);
+}
+
+.apply-request {
+    width: 400px;
 }
