@@ -1,4 +1,4 @@
-﻿
+﻿@model escolastico.Models.Usuario;
 @{
     ViewData["Title"] = "Registro";
 }
@@ -24,7 +24,7 @@
                     <button id="search-button" type="submit"><img class="search" src="~/assets/search.png" /></button>
                 </div>
             </form>
-            <form asp-controller="Sing" asp-action="Apply" class="flex-column centering gap-10">
+            <form asp-controller="Account" asp-action="SingUp" method="post" class="flex-column centering gap-10">
                 <h2>@ViewData["MSG"]</h2>
                 <div class="flex-row color-l-gray padding-a-20 border-n-r margin-a-20 centering gap-20">
                     <img class="color-green border-n-r" src="~/assets/verify.png" />
@@ -39,10 +39,10 @@
                 </div>
                 <div class="flex-column centering gap-10">
                     <span class="txt-bold txt-white">Usuario:</span>
-                    <input class="input-props" type="email"/>
+                    <input class="input-props" type="text" required asp-for="UsuarioUsr"/>
                     <div class="flex-row centering margin-a-10 gap-10">
                         <span class="txt-bold txt-white">Contraseña:</span>
-                        <input class="input-props" type="password"/>
+                        <input class="input-props" type="password" required asp-for="PasswordUsr"/>
                         <span class="txt-bold txt-white">Verifica tu contraseña:</span>
                         <input class="input-props" type="password" />
                     </div>
@@ -54,6 +54,6 @@
                 <input type="submit" value="Enviar" class="submit-props btn btn-prop color-yellow txt-f16px txt-white txt-bold"/>
             </form>
         </div>
-        <footer class="txt-f12px txt-center txt-white">¿Ya posees una cuenta? <a asp-controller="Sing" asp-action="In" class="txt-white txt-bold">Iniciar Sesión</a> </footer>
+        <footer class="txt-f12px txt-center txt-white">¿Ya posees una cuenta? <a asp-controller="Account" asp-action="Login" class="txt-white txt-bold">Iniciar Sesión</a> </footer>
     </div>
 </div>

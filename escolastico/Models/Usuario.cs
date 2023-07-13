@@ -5,13 +5,11 @@ namespace escolastico.Models;
 
 public partial class Usuario
 {
-    public string IdUsr { get; set; } = null!;
+    public int IdUsr { get; set; }
 
     public string? UsuarioUsr { get; set; }
 
     public string? PasswordUsr { get; set; }
-
-    public DateTime? FechaRegistro { get; set; }
 
     public virtual ICollection<Administrador> Administradors { get; set; } = new List<Administrador>();
 

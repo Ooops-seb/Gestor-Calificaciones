@@ -23,7 +23,7 @@ public partial class Alumno
 
     public string? ObservacionesAlu { get; set; }
 
-    public string? IdUsr { get; set; }
+    public int? IdUsr { get; set; }
 
     public virtual Usuario? IdUsrNavigation { get; set; }
 }
