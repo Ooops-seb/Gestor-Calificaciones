@@ -6,7 +6,7 @@
 |**País**|Ecuador|
 |**Año**|2023|
 
-_**Última fecha de modificación:** 8 de julio 2023_
+_**Última fecha de modificación:** 14 de julio 2023_
 
 # Problemática
 
