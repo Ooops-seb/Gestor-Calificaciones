@@ -12,20 +12,20 @@
             <img src="~/assets/usuario.png"/>
             <form asp-controller="Account" asp-action="Login" method="post" class="login-content flex-column centering">
                 <span class="txt-white txt-bold txt-f20px">Usuario</span>
-                <input class="input-props" type="text" placeholder="Ingrese su usuario" required name="userName"/>
+                <input class="input-props" type="text" maxlength="20" placeholder="Ingrese su usuario" required name="userName" />
                 <span class="txt-white txt-bold txt-f20px">Contraseña</span>
-                <input class="input-props" type="password" placeholder="Ingrese su contraseña" required name="password"/>
+                <input class="input-props" type="password" maxlength="20" placeholder="Ingrese su contraseña" required name="password"/>
                 <input type="submit" value="Ingresar" class="submit-props btn btn-prop centering txt-white txt-bold txt-f16px color-yellow"/>
-                @if(ViewData["MSG"] != null)
+                @if(ViewData["login-msg"] != null)
                 {
-                    <div>
-                        <div>
-                            @ViewData["MSG"];
+                    <div class="alert-container alert">
+                        <div class="txt-white">
+                            @ViewData["login-msg"]
                         </div>
                     </div>
                 }
             </form>
         </div>
-        <footer class="txt-f12px txt-center txt-white">¿No tienes una cuenta? <a asp-controller="Account" asp-action="SingUp" class="txt-white txt-bold">Registrate</a> </footer>
+        <footer class="txt-f12px txt-center txt-white">¿No tienes una cuenta? <a asp-controller="Account" asp-action="SearchUser" class="txt-white txt-bold">Registrate</a> </footer>
     </div>
 </div>

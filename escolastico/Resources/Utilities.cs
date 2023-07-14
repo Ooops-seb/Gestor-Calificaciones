@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography;
+﻿using escolastico.Models;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace escolastico.Resources

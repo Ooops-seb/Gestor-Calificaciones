@@ -15,6 +15,9 @@ builder.Services.AddDbContext<PrjEscolasticoContext>( options =>
 });
 
 builder.Services.AddScoped<IUsuarioService,UsuarioService>();
+builder.Services.AddScoped<IAdministradorService, AdministradorService>();
+builder.Services.AddScoped<IProfesorService, ProfesorService>();
+builder.Services.AddScoped<IAlumnoService, AlumnoService>();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
 {

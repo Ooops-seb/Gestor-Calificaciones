@@ -23,7 +23,7 @@ public partial class Profesor
 
     public string? ObservacionesPro { get; set; }
 
-    public int? IdUsr { get; set; }
+    public string? UsuarioUsr { get; set; }
 
-    public virtual Usuario? IdUsrNavigation { get; set; }
+    public virtual Usuario? UsuarioUsrNavigation { get; set; }
 }

@@ -5,6 +5,6 @@ namespace escolastico.Services.Contract
     public interface IUsuarioService
     {
         Task<Usuario> GetUser (string userName, string password);
-        Task<Usuario> SaveUser (Usuario user);
+        Task<Usuario> SaveUser (string idUser, Usuario user);
     }
 }

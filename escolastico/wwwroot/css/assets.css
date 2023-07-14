@@ -130,3 +130,15 @@
     border: none;
     border-radius: 15px;
 }
+
+.alert-container {
+    margin: 0 auto;
+    padding: 16px;
+    max-width: 600px;
+}
+
+.alert {
+    background-color: red;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}

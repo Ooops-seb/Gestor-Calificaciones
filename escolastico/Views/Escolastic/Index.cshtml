@@ -4,5 +4,10 @@
 }
 
 <h1>@ViewBag.Title</h1>
-<h2>@ViewData["user_name"]</h2>
-<a asp-controller="Escolastic" asp-action="LogOut">Cerrar Sesión</a>
+<div class="color-yellow">
+    <h2>Usuario: @ViewData["actor"]</h2>
+    <h2>Nombre: @ViewData["name"]</h2>
+    <h2>Apellido: @ViewData["surname"]</h2>
+    <h2>Rol: @ViewData["role"]</h2>
+    <a asp-controller="Escolastic" asp-action="LogOut">Cerrar Sesión</a>
+</div>

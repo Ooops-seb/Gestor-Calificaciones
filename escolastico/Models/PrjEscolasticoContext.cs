@@ -55,7 +55,6 @@ public partial class PrjEscolasticoContext : DbContext
                 .HasMaxLength(10)
                 .IsUnicode(false)
                 .HasColumnName("genero_adm");
-            entity.Property(e => e.IdUsr).HasColumnName("id_usr");
             entity.Property(e => e.NombreAdm)
                 .HasMaxLength(50)
                 .IsUnicode(false)
@@ -64,10 +63,14 @@ public partial class PrjEscolasticoContext : DbContext
                 .HasMaxLength(10)
                 .IsUnicode(false)
                 .HasColumnName("telefono_adm");
+            entity.Property(e => e.UsuarioUsr)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("usuario_usr");
 
-            entity.HasOne(d => d.IdUsrNavigation).WithMany(p => p.Administradors)
-                .HasForeignKey(d => d.IdUsr)
-                .HasConstraintName("id_usr_adm_fk");
+            entity.HasOne(d => d.UsuarioUsrNavigation).WithMany(p => p.Administradors)
+                .HasForeignKey(d => d.UsuarioUsr)
+                .HasConstraintName("usuario_usr_adm_fk");
         });
 
         modelBuilder.Entity<Alumno>(entity =>
@@ -99,7 +102,6 @@ public partial class PrjEscolasticoContext : DbContext
                 .HasMaxLength(10)
                 .IsUnicode(false)
                 .HasColumnName("genero_alu");
-            entity.Property(e => e.IdUsr).HasColumnName("id_usr");
             entity.Property(e => e.NombreAlu)
                 .HasMaxLength(50)
                 .IsUnicode(false)
@@ -112,10 +114,14 @@ public partial class PrjEscolasticoContext : DbContext
                 .HasMaxLength(10)
                 .IsUnicode(false)
                 .HasColumnName("telefono_alu");
+            entity.Property(e => e.UsuarioUsr)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("usuario_usr");
 
-            entity.HasOne(d => d.IdUsrNavigation).WithMany(p => p.Alumnos)
-                .HasForeignKey(d => d.IdUsr)
-                .HasConstraintName("id_usr_alu_fk");
+            entity.HasOne(d => d.UsuarioUsrNavigation).WithMany(p => p.Alumnos)
+                .HasForeignKey(d => d.UsuarioUsr)
+                .HasConstraintName("usuario_usr_alu_fk");
         });
 
         modelBuilder.Entity<Profesor>(entity =>
@@ -147,7 +153,6 @@ public partial class PrjEscolasticoContext : DbContext
                 .HasMaxLength(10)
                 .IsUnicode(false)
                 .HasColumnName("genero_pro");
-            entity.Property(e => e.IdUsr).HasColumnName("id_usr");
             entity.Property(e => e.NombrePro)
                 .HasMaxLength(50)
                 .IsUnicode(false)
@@ -160,27 +165,30 @@ public partial class PrjEscolasticoContext : DbContext
                 .HasMaxLength(10)
                 .IsUnicode(false)
                 .HasColumnName("telefono_pro");
-
-            entity.HasOne(d => d.IdUsrNavigation).WithMany(p => p.Profesors)
-                .HasForeignKey(d => d.IdUsr)
-                .HasConstraintName("id_usr_pro_fk");
-        });
-
-        modelBuilder.Entity<Usuario>(entity =>
-        {
-            entity.HasKey(e => e.IdUsr).HasName("id_usr_pk");
-
-            entity.ToTable("usuario");
-
-            entity.Property(e => e.IdUsr).HasColumnName("id_usr");
-            entity.Property(e => e.PasswordUsr)
-                .HasMaxLength(20)
-                .IsUnicode(false)
-                .HasColumnName("password_usr");
             entity.Property(e => e.UsuarioUsr)
                 .HasMaxLength(20)
                 .IsUnicode(false)
                 .HasColumnName("usuario_usr");
+
+            entity.HasOne(d => d.UsuarioUsrNavigation).WithMany(p => p.Profesors)
+                .HasForeignKey(d => d.UsuarioUsr)
+                .HasConstraintName("usuario_usr_pro_fk");
+        });
+
+        modelBuilder.Entity<Usuario>(entity =>
+        {
+            entity.HasKey(e => e.UsuarioUsr).HasName("usuario_usr_pk");
+
+            entity.ToTable("usuario");
+
+            entity.Property(e => e.UsuarioUsr)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("usuario_usr");
+            entity.Property(e => e.PasswordUsr)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("password_usr");
         });
 
         OnModelCreatingPartial(modelBuilder);

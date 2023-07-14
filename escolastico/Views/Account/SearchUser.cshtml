@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewData["Title"] = "Busca tus credenciales";
+}
+
+<div class="color-white flex-column centering">
+    <div class="singup-container color-d-blue">
+        <header class="txt-center">
+            <h1 class="txt-white txt-f28px txt-bold">@ViewBag.Title</h1>
+        </header>
+        <div class="singup-body flex-column centering color-l-blue">
+            <div class="flex-row margin-a-20">
+                <img src="~/assets/register.png"/>
+                <p class="color-l-gray txt-white">
+                    Ingresa tu número de identificación de la institución para verificar tus datos. Si encontramos
+                    una coincidencia pasarás a la creación de tu usuario personal.
+                </p>
+            </div>
+            <h2 class="txt-f20px txt-white txt-bold">Datos personales:</h2>
+            <form asp-controller="Account" asp-action="SearchUser" method="post" class="singup-data flex-column centering">
+                <div class="flex-row centering gap-10">
+                    <span class="txt-bold">ID:</span>
+                    <input class="input-props" type="text" maxlength="5" required name="idUser" />
+                    <button id="search-button" type="submit"><img class="search" src="~/assets/search.png" /></button>
+                </div>
+                @if (ViewData["search-msg"] != null)
+                {
+                    <div class="alert-container alert">
+                        <div class="txt-white">
+                            @ViewData["search-msg"]
+                        </div>
+                    </div>
+                }
+            </form>
+        </div>
+        <footer class="txt-f12px txt-center txt-white">¿Ya posees una cuenta? <a asp-controller="Account" asp-action="Login" class="txt-white txt-bold">Iniciar Sesión</a> </footer>
+    </div>
+</div>

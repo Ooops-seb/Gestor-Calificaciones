@@ -13,14 +13,23 @@ namespace escolastico.Controllers
         public IActionResult Index()
         {
             ClaimsPrincipal claimUser = HttpContext.User;
-            string user_name = "";
+            string actor = "";
+            string name = "";
+            string surname = "";
+            string role = "";
 
             if (claimUser.Identity.IsAuthenticated)
             {
-                user_name = claimUser.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault();
+                actor = claimUser.Claims.Where(c => c.Type == ClaimTypes.Actor).Select(c => c.Value).SingleOrDefault();
+                name = claimUser.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault();
+                surname = claimUser.Claims.Where(c => c.Type == ClaimTypes.Surname).Select(c => c.Value).SingleOrDefault();
+                role = claimUser.Claims.Where(c => c.Type == ClaimTypes.Role).Select(c => c.Value).SingleOrDefault();
             }
 
-            ViewData["user_name"] = user_name;
+            ViewData["actor"] = actor;
+            ViewData["name"] = name;
+            ViewData["surname"] = surname;
+            ViewData["role"] = role;
 
             return View();
         }

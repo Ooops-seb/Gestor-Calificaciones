@@ -16,9 +16,10 @@
     <link rel="shortcut icon" href="~/assets/logo.png" type="image/x-icon" />
     <link href="~/css/site.css" rel="stylesheet" />
     <link href="~/css/assets.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
-<body>
+<body class="slidein">
     <header class="flex-row centering color-wine">
         <a asp-controller="Home" asp-action="Index" class="flex-row centering">
             <img class="logo" src="~/assets/logo.png"/>
@@ -31,5 +32,7 @@
     <footer class="legal flex-row centering">
         <span class="txt-f12px">&copy; 2023 <a asp-controller="Home" asp-action="Index" class="txt-bold txt-black">@ViewBag.Name School</a> - Desarrollado por <a target="_blank" href="https://github.com/Ooops-seb" class="txt-bold txt-black">@ViewBag.Author</a></span>
     </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
 </body>
 </html>

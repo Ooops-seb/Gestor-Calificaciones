@@ -1,6 +1,5 @@
-﻿@model escolastico.Models.Usuario;
-@{
-    ViewData["Title"] = "Registro";
+﻿@{
+    ViewData["Title"] = "Registro de usuario";
 }
 
 <div class="color-white flex-column centering">
@@ -8,52 +7,40 @@
         <header class="txt-center">
             <h1 class="txt-white txt-f28px txt-bold">@ViewBag.Title</h1>
         </header>
-        <div class="singup-body flex-column centering color-l-blue">
-            <div class="flex-row margin-a-20">
-                <img src="~/assets/register.png"/>
-                <p class="color-l-gray txt-white">
-                    Ingresa tu número de identificación para verificar tus datos. Si encontramos
-                    una coincidencia pasarás a la creación de tu usuario y contraseña personal.
-                </p>
+        <div class="flex-row color-l-gray padding-a-20 border-n-r margin-a-20 centering gap-20">
+            <img class="color-green border-n-r" src="~/assets/verify.png" />
+            <div class="flex-column centering gap-10">
+                <span class="txt-bold txt-white">Nombre:</span>
+                <input class="input-props" type="text" value="@TempData["name_user"]" disabled/>
+                <span class="txt-bold txt-white">Apellido:</span>
+                <input class="input-props" type="text" value="@TempData["surname"]" disabled/>
+                <span class="txt-bold txt-white">Rol:</span>
+                <input class="input-props" type="text" value="@TempData["rol"]" disabled/>
             </div>
-            <h2 class="txt-f20px txt-white txt-bold">Datos personales:</h2>
-            <form method="post" class="singup-data flex-column centering">
-                <div class="flex-row centering gap-10">
-                    <span class="txt-bold">ID:</span>
-                    <input class="input-props" type="text" />
-                    <button id="search-button" type="submit"><img class="search" src="~/assets/search.png" /></button>
-                </div>
-            </form>
-            <form asp-controller="Account" asp-action="SingUp" method="post" class="flex-column centering gap-10">
-                <h2>@ViewData["MSG"]</h2>
-                <div class="flex-row color-l-gray padding-a-20 border-n-r margin-a-20 centering gap-20">
-                    <img class="color-green border-n-r" src="~/assets/verify.png" />
-                    <div class="flex-column centering gap-10">
-                        <span class="txt-bold txt-white">Nombre:</span>
-                        <input class="input-props" type="text" />
-                        <span class="txt-bold txt-white">Apellido:</span>
-                        <input class="input-props" type="text"/>
-                        <span class="txt-bold txt-white">Rol:</span>
-                        <input class="input-props" type="text" />
-                    </div>
-                </div>
-                <div class="flex-column centering gap-10">
-                    <span class="txt-bold txt-white">Usuario:</span>
-                    <input class="input-props" type="text" required asp-for="UsuarioUsr"/>
-                    <div class="flex-row centering margin-a-10 gap-10">
-                        <span class="txt-bold txt-white">Contraseña:</span>
-                        <input class="input-props" type="password" required asp-for="PasswordUsr"/>
-                        <span class="txt-bold txt-white">Verifica tu contraseña:</span>
-                        <input class="input-props" type="password" />
-                    </div>
-                    <span class="flex-row centering txt-bold">
-                        <input class="check-box" type="checkbox" /> 
-                        Aceptar términos y condiciones
-                    </span>
-                </div>
-                <input type="submit" value="Enviar" class="submit-props btn btn-prop color-yellow txt-f16px txt-white txt-bold"/>
-            </form>
         </div>
+        <form asp-controller="Account" asp-action="SingUp" method="post" class="flex-column centering gap-10">
+            <div class="flex-column centering gap-10">
+                <span hidden class="txt-bold txt-white">ID:</span>
+                <input hidden class="input-props" type="text" value="@TempData["idUser"]" name="idUser" required/>
+                <span class="txt-bold txt-white">Usuario:</span>
+                <input class="input-props" type="text" maxlength="20" required name="userName"/>
+                <span class="txt-bold txt-white">Contraseña:</span>
+                <input class="input-props" type="password" maxlength="20" required name="password" />
+                <span class="flex-row centering txt-bold">
+                    <input class="check-box" type="checkbox" required/>
+                    Aceptar términos y condiciones
+                </span>
+            </div>
+            <input type="submit" value="Enviar" class="submit-props btn btn-prop color-yellow txt-f16px txt-white txt-bold" />
+            @if (ViewData["singup-msg"] != null)
+            {
+                <div class="alert-container alert">
+                    <div class="txt-white">
+                        @ViewData["singup-msg"]
+                    </div>
+                </div>
+            }
+        </form>
         <footer class="txt-f12px txt-center txt-white">¿Ya posees una cuenta? <a asp-controller="Account" asp-action="Login" class="txt-white txt-bold">Iniciar Sesión</a> </footer>
     </div>
 </div>

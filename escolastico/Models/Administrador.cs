@@ -21,7 +21,7 @@ public partial class Administrador
 
     public string? GeneroAdm { get; set; }
 
-    public int? IdUsr { get; set; }
+    public string? UsuarioUsr { get; set; }
 
-    public virtual Usuario? IdUsrNavigation { get; set; }
+    public virtual Usuario? UsuarioUsrNavigation { get; set; }
 }

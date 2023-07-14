@@ -5,9 +5,7 @@ namespace escolastico.Models;
 
 public partial class Usuario
 {
-    public int IdUsr { get; set; }
-
-    public string? UsuarioUsr { get; set; }
+    public string UsuarioUsr { get; set; } = null!;
 
     public string? PasswordUsr { get; set; }
 
