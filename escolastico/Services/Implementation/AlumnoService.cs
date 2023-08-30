@@ -21,5 +21,25 @@ namespace escolastico.Services.Implementation
             Alumno user_info = await _dbContext.Alumnos.Where(a => a.UsuarioUsr == userName).FirstOrDefaultAsync();
             return user_info;
         }
+        public async Task<Alumno> NewRegister(Alumno newRegister) {
+            _dbContext.Alumnos.Add(newRegister);
+            await _dbContext.SaveChangesAsync();
+            return newRegister;
+        }
+        public async Task<string> GenerateNextId(){
+            var lastAlumno = await _dbContext.Alumnos.OrderByDescending(a => a.IdAlu).FirstOrDefaultAsync();
+
+            if (lastAlumno != null)
+            {
+                var lastId = lastAlumno.IdAlu;
+                var numericPart = int.Parse(lastId.Substring(1)) + 1;
+                var newId = "S" + numericPart.ToString("D4");
+                return newId;
+            }
+            else
+            {
+                return "S0001";
+            }
+        }
     }
 }

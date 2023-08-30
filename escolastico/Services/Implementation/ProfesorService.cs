@@ -22,5 +22,32 @@ namespace escolastico.Services.Implementation
             Profesor user_info = await _dbContext.Profesors.Where(a => a.UsuarioUsr == userName).FirstOrDefaultAsync();
             return user_info;
         }
+        public async Task<List<Profesor>> GetProfesorList()
+        {
+            return await _dbContext.Profesors.ToListAsync();
+        }
+        public async Task<Profesor> NewRegister(Profesor newRegister)
+        {
+            _dbContext.Profesors.Add(newRegister);
+            await _dbContext.SaveChangesAsync();
+
+            return newRegister;
+        }
+        public async Task<string> GenerateNextId()
+        {
+            var lastProf = await _dbContext.Profesors.OrderByDescending(a => a.IdPro).FirstOrDefaultAsync();
+
+            if (lastProf != null)
+            {
+                var lastId = lastProf.IdPro;
+                var numericPart = int.Parse(lastId.Substring(1)) + 1;
+                var newId = "P" + numericPart.ToString("D4");
+                return newId;
+            }
+            else
+            {
+                return "P0001";
+            }
+        }
     }
 }

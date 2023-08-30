@@ -1,21 +1,21 @@
-﻿
-@{
+﻿@{
+    Layout = "_Layout";
     ViewData["Title"] = "Iniciar Sesión";
 }
 
-<div class="color-white flex-column centering">
+<div class="color-white flex-c center">
     <div class="login-container color-d-blue">
         <header class="txt-center">
-            <h1 class="txt-white txt-f28px txt-bold">@ViewBag.Title</h1>
+            <h1 class="txt-white fz-28 txt-bold">@ViewBag.Title</h1>
         </header>
-        <div class="flex-row centering color-l-blue">
+        <div class="flex-r center color-l-blue">
             <img src="~/assets/usuario.png"/>
-            <form asp-controller="Account" asp-action="Login" method="post" class="login-content flex-column centering">
-                <span class="txt-white txt-bold txt-f20px">Usuario</span>
+            <form asp-controller="Account" asp-action="Login" method="post" class="login-content flex-c center">
+                <span class="txt-white txt-bold fz-20">Usuario</span>
                 <input class="input-props" type="text" maxlength="20" placeholder="Ingrese su usuario" required name="userName" />
-                <span class="txt-white txt-bold txt-f20px">Contraseña</span>
+                <span class="txt-white txt-bold fz-20">Contraseña</span>
                 <input class="input-props" type="password" maxlength="20" placeholder="Ingrese su contraseña" required name="password"/>
-                <input type="submit" value="Ingresar" class="submit-props btn btn-prop centering txt-white txt-bold txt-f16px color-yellow"/>
+                <input type="submit" value="Ingresar" class="submit-props btn btn-prop center txt-white txt-bold fz-16 color-yellow"/>
                 @if(ViewData["login-msg"] != null)
                 {
                     <div class="alert-container alert">
@@ -26,6 +26,6 @@
                 }
             </form>
         </div>
-        <footer class="txt-f12px txt-center txt-white">¿No tienes una cuenta? <a asp-controller="Account" asp-action="SearchUser" class="txt-white txt-bold">Registrate</a> </footer>
+        <footer class="fz-12 txt-center txt-white">¿No tienes una cuenta? <a asp-controller="Account" asp-action="SearchUser" class="txt-white txt-bold">Registrate</a> </footer>
     </div>
 </div>

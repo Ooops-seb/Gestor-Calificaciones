@@ -1,17 +1,17 @@
-﻿
-@{
+﻿@{
+    Layout = "_Layout";
     ViewData["Title"] = "Registro enviado";
 }
 
-<div class="flex-column centering color-white txt-center">
-    <div class="margin-a-20 color-green border-n-r">
+<div class="flex-c center color-white txt-center">
+    <div class="mg-20 color-green border-n-r">
         <h2 class="txt-white">Registro enviado</h2>
-        <div class="apply-request flex-column centering padding-a-10 color-white">
-            <p class="txt-justify txt-f16px">
+        <div class="apply-request flex-c center pad-10 color-white">
+            <p class="txt-justify fz-16">
                 Se ha enviado al email registrado un correo de confirmación, por favor revise su
                 bandeja de entrada para activar su usuario y poder ingresar al sistema.
             </p>
-            <a asp-controller="Account" asp-action="Login" class="btn btn-prop color-yellow txt-white padding-a-10">Iniciar Sesión</a>
+            <a asp-controller="Account" asp-action="Login" class="btn btn-prop color-yellow txt-white pad-10">Iniciar Sesión</a>
         </div>
     </div>
 </div>

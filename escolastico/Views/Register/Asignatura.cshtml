@@ -1,0 +1,43 @@
+﻿@{
+    Layout = "_LayoutApp";
+    ViewData["Title"] = "Nueva Asignatura";
+}
+
+<div class="flex-c center mg-10">
+    <h1 class="title txt-white">@ViewBag.Title</h1>
+    @if (ViewData["MSG"] == "Registro realizado correctamente")
+    {
+        <div class="alert-container alert-green">
+            <div class="txt-white">
+                @ViewData["MSG"]
+            </div>
+        </div>
+    }
+    else if (ViewData["MSG"] != null)
+    {
+        <div class="alert-container alert-red">
+            <div class="txt-white">
+                @ViewData["MSG"]
+            </div>
+        </div>
+    }
+    <form method="post" class="form pad-20 flex-c center gap-10">
+        <span class="txt-white txt-bold fz-20">Nombre</span>
+        <input class="input-props" type="text" maxlength="50" placeholder="Ingrese su nombre" required name="nombre" />
+
+        <span class="txt-white txt-bold fz-20">Creditos</span>
+        <input class="input-props" type="number" placeholder="Ingrese el numero de creditos" required name="Creditos" />
+
+        <span class="txt-white txt-bold fz-20">Profesor</span>
+        <select class="input-props-select" required name="profesor">
+            <option value="">Seleccione un profesor...</option>
+            @foreach (var profesor in ViewBag.ProfList)
+            {
+                <option value="@profesor.Value">@profesor.Text</option>
+            }
+        </select>
+
+        <input class="submit-props btn btn-prop center txt-white txt-bold fz-16 color-yellow" type="submit" value="Registrar" asp-controller="Register" asp-action="Asignatura" />
+    </form>
+
+</div>

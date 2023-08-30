@@ -1,4 +1,5 @@
 ﻿@{
+    Layout = "_Layout";
     ViewData["Title"] = "Home Page";
     ViewData["Name"] = "Latacunga";
     ViewData["Author"] = "Erik Villarreal";
@@ -9,43 +10,43 @@
 }
 
 <div>
-    <nav id="inicio" class="navbar flex-row color-white">
-        <a asp-controller="Home" asp-action="Index" class="btn-prop btn color-brown txt-black flex-row centering">
+    <nav id="inicio" class="navbar-home flex-r color-white">
+        <a asp-controller="Home" asp-action="Index" class="btn-prop btn color-brown txt-black flex-r center">
             <img src="~/assets/logo.png" />
-            <span class="txt-white txt-bold txt-f20px">@ViewBag.Name</span>
+            <span class="txt-white txt-bold fz-20">@ViewBag.Name</span>
         </a>
-        <div class="links centering txt-bold">
-            <a href="#Nosotros" class="txt-black txt-f20px">Nosotros</a>
-            <a href="#Contacto" class="txt-black txt-f20px">Contáctanos</a>
+        <div class="links center txt-bold">
+            <a href="#Nosotros" class="txt-black fz-20">Nosotros</a>
+            <a href="#Contacto" class="txt-black fz-20">Contáctanos</a>
         </div>
-        <a asp-controller="Account" asp-action="Login" class="btn-prop btn color-wine txt-white txt-f20px txt-bold">Login</a>
+        <a asp-controller="Account" asp-action="Login" class="btn-prop btn color-wine txt-white fz-20 txt-bold">Login</a>
     </nav>
     <img class="background" src="~/assets/background.jpg" />
     <div class="index">
         <div id="Nosotros" class="container color-yellow txt-center">
-            <h3 class="txt-white txt-bold txt-f28px">Nosotros</h3>
+            <h3 class="txt-white txt-bold fz-28">Nosotros</h3>
             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis rerum voluptatem eveniet laudantium quis, possimus corporis ex facere nam at animi nisi accusamus, repellendus reprehenderit voluptate commodi. Atque alias adipisci magni libero praesentium ex quis debitis dicta a iure saepe, ratione ab. Nisi sit magni vero cum eaque quis inventore.</p>
-            <div class="flex-row centering">
+            <div class="flex-r center">
                 <div class="circle-desc color-magenta">
-                    <h2 class="txt-white txt-f24px">Misión</h2>
-                    <p class="txt-color-p">Lorem ipsum dolor sit amet consectetur, tcorporis ex facere nam at animi nisi accusamus, repellendus reprehenderit voluptate commodi. Atque alias adipisci magni libero praesentium ex quis debitis dicta a iure saepe, ratione ab. Nisi sit magni vero cum eaque quis inventore.</p>
+                    <h2 class="txt-white fz-20">Misión</h2>
+                    <p class="txt-black">Lorem ipsum dolor sit amet consectetur, tcorporis ex facere nam at animi nisi accusamus, repellendus reprehenderit voluptate commodi. Atque alias adipisci magni libero praesentium ex quis debitis dicta a iure saepe, ratione ab. Nisi sit magni vero cum eaque quis inventore.</p>
                 </div>
                 <div class="circle-desc color-magenta">
-                    <h2 class="txt-white txt-f24px">Visión</h2>
-                    <p class="txt-color-p">Lorem ipsum dolor sit amet consectetur, tcorporis ex facere nam at animi nisi accusamus, repellendus reprehenderit voluptate commodi. Atque alias adipisci magni libero praesentium ex quis debitis dicta a iure saepe, ratione ab. Nisi sit magni vero cum eaque quis inventore.</p>
+                    <h2 class="txt-white fz-20">Visión</h2>
+                    <p class="txt-black">Lorem ipsum dolor sit amet consectetur, tcorporis ex facere nam at animi nisi accusamus, repellendus reprehenderit voluptate commodi. Atque alias adipisci magni libero praesentium ex quis debitis dicta a iure saepe, ratione ab. Nisi sit magni vero cum eaque quis inventore.</p>
                 </div>
             </div>
         </div>
         <div id="Contacto" class="txt-center container color-l-blue">
-            <h3 class="txt-f28px txt-white txt-bold centering">Contacto</h3>
-            <div class="flex-row centering">
+            <h3 class="fz-28 txt-white txt-bold center">Contacto</h3>
+            <div class="flex-r center">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.2120238453513!2d-78.5886726253856!3d-0.9988702989915021!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d4639e3fb9755f%3A0x22fe7f63301b5fee!2sESPE%20-%20Campus%20Belisario%20Quevedo!5e0!3m2!1ses!2sec!4v1688059668970!5m2!1ses!2sec" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                <div class="flex-column address txt-center">
+                <div class="flex-c address txt-center">
                     <p>Ven y conoce nuestras instalaciones</p>
-                    <h3 class="txt-white txt-bold txt-f20px">Dirección</h3>
-                    <span class="txt-f16px txt-color-p">@ViewBag.Address_Dir</span>
-                    <span class="txt-f16px txt-color-p">@ViewBag.Address_City</span>
-                    <span class="txt-f16px txt-color-p">@ViewBag.Phone</span>
+                    <h3 class="txt-white txt-bold fz-20">Dirección</h3>
+                    <span class="fz-20 txt-black">@ViewBag.Address_Dir</span>
+                    <span class="fz-20 txt-black">@ViewBag.Address_City</span>
+                    <span class="fz-20 txt-black">@ViewBag.Phone</span>
                     <a class="txt-white" target="_blank" href="@ViewBag.Web">Visitanos: @ViewBag.Web</a>
                 </div>
             </div>

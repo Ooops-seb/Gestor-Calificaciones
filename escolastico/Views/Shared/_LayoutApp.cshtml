@@ -1,0 +1,90 @@
+﻿@{
+    Layout = "_Layout";
+    ViewData["Name"] = "Latacunga";
+    ViewData["Author"] = "Erik Villarreal";
+    ViewData["Address_Dir"] = "Parroquia Belisario Quevedo, Barrio el Forastero";
+    ViewData["Address_City"] = "Latacunga - Ecuador";
+    ViewData["Phone"] = "(03) 281 0206";
+    ViewData["Web"] = "https://espe-el.espe.edu.ec/";
+
+    ClaimsPrincipal claimUser = Context.User;
+    string actor = "";
+    string name = "";
+    string surname = "";
+    string role = "";
+
+    if (claimUser.Identity.IsAuthenticated)
+    {
+        actor = claimUser.Claims.Where(c => c.Type == ClaimTypes.Actor).Select(c => c.Value).SingleOrDefault();
+        name = claimUser.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault();
+        surname = claimUser.Claims.Where(c => c.Type == ClaimTypes.Surname).Select(c => c.Value).SingleOrDefault();
+        role = claimUser.Claims.Where(c => c.Type == ClaimTypes.Role).Select(c => c.Value).SingleOrDefault();
+    }
+
+    ViewData["actor"] = actor;
+    ViewData["name"] = name;
+    ViewData["surname"] = surname;
+    ViewData["role"] = role;
+}
+
+<div class="navigation flex-r center">
+    <nav class="navbar pad-10 flex-c center-top">
+        <label class="txt-white txt-bold" for="title">Bienvenido, @ViewData["name"] @ViewData["surname"] !</label>
+        <span class="txt-white">@ViewData["role"]</span>
+        <div class="img mg-20 flex center">
+            IMAGEN
+        </div>
+        <h3 class="fz-20 txt-white">Menu</h3>
+        <div class="menu-bar flex-c center jc-sb">
+            <div class="menu flex-c">
+                <a class="button" asp-controller="Escolastic" asp-action="Index">
+                    <svg class="svg-icon" viewBox="0 0 26 26" xmlns="http://www.w3.org/2000/svg">
+                        <g fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M19.75 10a.75.75 0 0 0-1.5 0h1.5Zm-14 0a.75.75 0 0 0-1.5 0h1.5Zm14.72 2.53a.75.75 0 1 0 1.06-1.06l-1.06 1.06ZM12 3l.53-.53a.75.75 0 0 0-1.06 0L12 3Zm-9.53 8.47a.75.75 0 1 0 1.06 1.06l-1.06-1.06ZM7 21.75h10v-1.5H7v1.5ZM19.75 19v-9h-1.5v9h1.5Zm-14 0v-9h-1.5v9h1.5Zm15.78-7.53l-9-9l-1.06 1.06l9 9l1.06-1.06Zm-10.06-9l-9 9l1.06 1.06l9-9l-1.06-1.06ZM17 21.75A2.75 2.75 0 0 0 19.75 19h-1.5c0 .69-.56 1.25-1.25 1.25v1.5Zm-10-1.5c-.69 0-1.25-.56-1.25-1.25h-1.5A2.75 2.75 0 0 0 7 21.75v-1.5Z" />
+                        </g>
+                    </svg>
+                    Inicio
+                </a>
+                <a class="button" asp-controller="Register" asp-action="Index">
+                    <svg class="svg-icon" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+                        <g fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M24 0v24H0V0h24ZM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018Zm.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022Zm-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01l-.184-.092Z" />
+                            <path fill="#000000" d="M13.586 2a2 2 0 0 1 1.284.467l.13.119L19.414 7a2 2 0 0 1 .578 1.238l.008.176V20a2 2 0 0 1-1.85 1.995L18 22H6a2 2 0 0 1-1.995-1.85L4 20V4a2 2 0 0 1 1.85-1.995L6 2h7.586ZM12 4H6v16h12V10h-4.5A1.5 1.5 0 0 1 12 8.5V4Zm0 7.5a1 1 0 0 1 1 1V14h1.5a1 1 0 1 1 0 2H13v1.5a1 1 0 1 1-2 0V16H9.5a1 1 0 1 1 0-2H11v-1.5a1 1 0 0 1 1-1Zm2-7.086V8h3.586L14 4.414Z" />
+                        </g>
+                    </svg>
+                    Nuevo
+                </a>
+                <a class="button" asp-controller="Query" asp-action="Index">
+                    <svg class="svg-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <g fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m19.6 21l-6.3-6.3q-.75.6-1.725.95T9.5 16q-2.725 0-4.612-1.888T3 9.5q0-2.725 1.888-4.612T9.5 3q2.725 0 4.612 1.888T16 9.5q0 1.1-.35 2.075T14.7 13.3l6.3 6.3l-1.4 1.4ZM9.5 14q1.875 0 3.188-1.313T14 9.5q0-1.875-1.313-3.188T9.5 5Q7.625 5 6.312 6.313T5 9.5q0 1.875 1.313 3.188T9.5 14Z" />
+                        </g>
+                    </svg>
+                    Consultas
+                </a>
+                <a class="button" asp-controller="History" asp-action="Index">
+                    <svg class="svg-icon" viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg">
+                        <g fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M26 2H8a2 2 0 0 0-2 2v4H4v2h2v5H4v2h2v5H4v2h2v4a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Zm0 26H8v-4h2v-2H8v-5h2v-2H8v-5h2V8H8V4h18Z" />
+                            <path d="M14 8h8v2h-8zm0 7h8v2h-8zm0 7h8v2h-8z" />
+                        </g>
+                    </svg>
+                    Historial
+                </a>
+            </div>
+            <a class="button" asp-controller="Escolastic" asp-action="LogOut">
+                <svg class="svg-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <g fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 18.25a.75.75 0 0 0 0 1.5h6A1.75 1.75 0 0 0 19.75 18V6A1.75 1.75 0 0 0 18 4.25h-6a.75.75 0 0 0 0 1.5h6a.25.25 0 0 1 .25.25v12a.25.25 0 0 1-.25.25h-6Z" />
+                        <path fill-rule="evenodd" d="M14.503 14.365c.69 0 1.25-.56 1.25-1.25v-2.24c0-.69-.56-1.25-1.25-1.25H9.89a26.723 26.723 0 0 0-.02-.22l-.054-.556a1.227 1.227 0 0 0-1.751-.988a15.059 15.059 0 0 0-4.368 3.163l-.099.104a1.253 1.253 0 0 0 0 1.734l.1.103a15.06 15.06 0 0 0 4.367 3.164a1.227 1.227 0 0 0 1.751-.988l.054-.556l.02-.22h4.613Zm-5.308-1.5a.75.75 0 0 0-.748.704c-.019.29-.042.581-.07.871l-.016.162a13.562 13.562 0 0 1-3.516-2.607a13.558 13.558 0 0 1 3.516-2.607l.016.162c.028.29.051.58.07.871a.75.75 0 0 0 .748.704h5.058v1.74H9.195Z" clip-rule="evenodd" />
+                    </g>
+                </svg>
+                Cerrar sesion
+            </a>
+        </div>
+    </nav>
+
+    <div class="slidein content mg-10">
+        @RenderBody()
+    </div>
+</div>

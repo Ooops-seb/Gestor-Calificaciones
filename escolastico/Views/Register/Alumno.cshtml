@@ -1,0 +1,77 @@
+﻿@{
+    Layout = "_LayoutApp";
+    ViewData["Title"] = "Nuevo Alumno";
+}
+
+<div class="flex-c center mg-10">
+    <h1 class="title txt-white">@ViewBag.Title</h1>
+    @if (ViewData["MSG"] == "Registro realizado correctamente")
+    {
+        <div class="alert-container alert-green">
+            <div class="txt-white">
+                @ViewData["MSG"]
+            </div>
+        </div>
+    }
+    else if (ViewData["MSG"] != null)
+    {
+        <div class="alert-container alert-red">
+            <div class="txt-white">
+                @ViewData["MSG"]
+            </div>
+        </div>
+    }
+    <form method="post" class="form pad-20 flex-c center gap-10">
+        <span class="txt-white txt-bold fz-20">Cedula</span>
+        <input class="input-props" type="text" maxlength="10" placeholder="Ingrese su cedula" required name="cedula" />
+
+        <span class="txt-white txt-bold fz-20">Nombre</span>
+        <input class="input-props" type="text" maxlength="50" placeholder="Ingrese su nombre" required name="nombre" />
+
+        <span class="txt-white txt-bold fz-20">Apellido</span>
+        <input class="input-props" type="text" maxlength="50" placeholder="Ingrese su apellido" required name="apellido" />
+
+        <span class="txt-white txt-bold fz-20">Campus</span>
+        <select class="input-props-select" required name="campus">
+            <option value="">Seleccione un campus...</option>
+            @foreach (var campus in ViewBag.CampusList)
+            {
+                <option value="@campus.Value">@campus.Text</option>
+            }
+        </select>
+
+        <span class="txt-white txt-bold fz-20">Titulación</span>
+        <select class="input-props-select" required name="titulacion">
+            @foreach (var titulacion in ViewBag.TitulacionList)
+            {
+                <option value="@titulacion.Value">@titulacion.Text</option>
+            }
+        </select>
+        
+        <span class="txt-white txt-bold fz-20">Fecha nacimiento</span>
+        <input class="input-props" type="date" required name="fecha_nac" />
+
+        <span class="txt-white txt-bold fz-20">Direccion</span>
+        <input class="input-props" type="text" maxlength="250" placeholder="Ingrese su direccion" required name="direccion" />
+
+        <span class="txt-white txt-bold fz-20">Telefono</span>
+        <input class="input-props" type="text" maxlength="10" placeholder="Ingrese su telefono" required name="telefono" />
+
+        <span class="txt-white txt-bold fz-20">Correo</span>
+        <input class="input-props" type="email" maxlength="100" placeholder="Ingrese su correo" required name="correo" />
+
+        <span class="txt-white txt-bold fz-20">Genero</span>
+        <select class="input-props-select" required name="genero">
+            <option value="">Seleccione un genero...</option>
+            <option value="Femenino">Femenino</option>
+            <option value="Masculino">Masculino</option>
+            <option value="Otro">Otro</option>
+        </select>
+
+        <span class="txt-white txt-bold fz-20">Observaciones</span>
+        <input class="input-props" type="text" maxlength="250" placeholder="Ingrese sus observaciones" required name="observaciones" />
+
+        <input class="submit-props btn btn-prop center txt-white txt-bold fz-16 color-yellow" type="submit" value="Registrar" asp-controller="Register" asp-action="Alumno" />
+    </form>
+
+</div>

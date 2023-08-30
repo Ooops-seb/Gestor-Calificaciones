@@ -6,5 +6,7 @@ namespace escolastico.Services.Contract
     {
         Task<Administrador> FindUser(string idUser);
         Task<Administrador> GetInfo(string idUser);
+        Task<Administrador> NewRegister(Administrador newRegister);
+        Task<string> GenerateNextId();
     }
 }

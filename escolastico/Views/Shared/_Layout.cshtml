@@ -20,19 +20,17 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body class="slidein">
-    <header class="flex-row centering color-wine">
-        <a asp-controller="Home" asp-action="Index" class="flex-row centering">
+    <header class="flex-r center color-wine">
+        <a asp-controller="Home" asp-action="Index" class="flex-r center">
             <img class="logo" src="~/assets/logo.png"/>
-            <span class="txt-bold txt-white txt-f20px">@ViewBag.Name</span>
+            <span class="txt-bold txt-white fz-20">@ViewBag.Name</span>
         </a>
     </header>
     <main role="main" class="color-d-blue">
         @RenderBody()
     </main>
-    <footer class="legal flex-row centering">
-        <span class="txt-f12px">&copy; 2023 <a asp-controller="Home" asp-action="Index" class="txt-bold txt-black">@ViewBag.Name School</a> - Desarrollado por <a target="_blank" href="https://github.com/Ooops-seb" class="txt-bold txt-black">@ViewBag.Author</a></span>
+    <footer class="legal flex-r center no-scroll">
+        <span class="fz-12">&copy; 2023 <a asp-controller="Home" asp-action="Index" class="txt-bold txt-black">@ViewBag.Name School</a> - Desarrollado por <a target="_blank" href="https://github.com/Ooops-seb" class="txt-bold txt-black">@ViewBag.Author</a></span>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
 </body>
 </html>

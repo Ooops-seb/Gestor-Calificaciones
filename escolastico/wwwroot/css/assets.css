@@ -1,16 +1,4 @@
-﻿.txt-white {
-    color: white
-}
-
-.txt-black {
-    color: black
-}
-
-.txt-gray {
-    color: #4a5463
-}
-
-.color-brown {
+﻿.color-brown {
     background-color: #786844
 }
 
@@ -50,80 +38,137 @@
     background-color: white
 }
 
-.txt-bold {
-    font-weight: bold
+/*Control de texto*/
+.txt-gray {
+    color: #4a5463
 }
 
+.txt-black {
+    color: black
+}
+
+.txt-white {
+    color: white;
+}
+
+.txt-bold {
+    font-weight: bold;
+}
+
+/*Geometry*/
 .txt-justify {
     text-align: justify
-}
-
-.txt-f12px {
-    font-size: 12px
-}
-
-.txt-f16px {
-    font-size: 16px
-}
-
-.txt-f20px {
-    font-size: 20px
-}
-
-.txt-f24px {
-    font-size: 24px
-}
-
-.txt-f28px {
-    font-size: 28px
 }
 
 .txt-center {
     text-align: center
 }
 
-.txt-color-p {
-    color: black
+.flex {
+    display: flex;
 }
 
-.flex-column{
+.flex-c {
     display: flex;
     flex-direction: column;
 }
 
-.flex-row {
+.flex-r {
     display: flex;
     flex-direction: row;
 }
 
-.centering {
-    align-items: center;
+.center {
     justify-content: center;
+    align-items: center;
     justify-items: center;
 }
 
-.margin-a-10 {
-    margin: 10px;
+.center-top {
+    justify-content: start;
+    align-items: center;
 }
 
-.margin-a-20{
-    margin: 20px;
+.jc-sb {
+    justify-content: space-between;
 }
 
-.padding-a-10 {
-    padding: 10px;
+.jc-sa {
+    justify-content: space-around;
 }
 
-.padding-a-20 {
-    padding: 20px;
+/*Separaciones*/
+.pad-10 {
+    padding: 10px
+}
+
+.pad-20 {
+    padding: 20px
+}
+
+.pad-30 {
+    padding: 30px
+}
+
+.pad-40 {
+    padding: 40px
+}
+
+.mg-10 {
+    margin: 10px
+}
+
+.mg-20 {
+    margin: 20px
+}
+
+.mg-30 {
+    margin: 30px
+}
+
+.mg-40 {
+    margin: 40px
 }
 
 .gap-10 {
-    gap: 10px;
+    gap: 10px
 }
 
 .gap-20 {
-    gap: 20px;
+    gap: 20px
+}
+
+.gap-30 {
+    gap: 30px
+}
+
+.gap-40 {
+    gap: 40px
+}
+
+/*Font Size*/
+.fz-12 {
+    font-size: 12px;
+}
+
+.fz-16 {
+    font-size: 16px;
+}
+
+.fz-20 {
+    font-size: 20px;
+}
+
+.fz-24 {
+    font-size: 24px;
+}
+
+.fz-28 {
+    font-size: 28px;
+}
+
+.fz-32 {
+    font-size: 32px;
 }
 
 .border-n-r {

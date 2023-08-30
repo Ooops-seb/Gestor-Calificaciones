@@ -9,7 +9,7 @@ public partial class Paralelo
 
     public string HorarioPar { get; set; } = null!;
 
-    public byte AlumnosRegistradosPar { get; set; }
+    public byte? AlumnosRegistradosPar { get; set; }
 
     public string IdAsi { get; set; } = null!;
 

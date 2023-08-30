@@ -23,6 +23,8 @@ public partial class PrjEscolasticoContext : DbContext
 
     public virtual DbSet<Asignatura> Asignaturas { get; set; }
 
+    public virtual DbSet<Auditorium> Auditoria { get; set; }
+
     public virtual DbSet<Calificacion> Calificacions { get; set; }
 
     public virtual DbSet<Campus> Campuses { get; set; }
@@ -218,6 +220,27 @@ public partial class PrjEscolasticoContext : DbContext
                 .HasForeignKey(d => d.IdPro)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("id_pro_asi_fk");
+        });
+
+        modelBuilder.Entity<Auditorium>(entity =>
+        {
+            entity.HasKey(e => e.IdAud).HasName("PK__Auditori__6BE84EABC5434744");
+
+            entity.Property(e => e.IdAud).HasColumnName("id_aud");
+            entity.Property(e => e.Fecha)
+                .HasColumnType("datetime")
+                .HasColumnName("fecha");
+            entity.Property(e => e.Sentencia)
+                .IsUnicode(false)
+                .HasColumnName("sentencia");
+            entity.Property(e => e.TablaAfectada)
+                .HasMaxLength(128)
+                .IsUnicode(false)
+                .HasColumnName("tabla_afectada");
+            entity.Property(e => e.Usuario)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("usuario");
         });
 
         modelBuilder.Entity<Calificacion>(entity =>

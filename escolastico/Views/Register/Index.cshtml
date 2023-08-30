@@ -1,0 +1,24 @@
+﻿@{
+    Layout = "_LayoutApp";
+}
+
+<div class="mg-20 color-yellow flex-c center">
+    <h2>Registro:</h2>
+    <form asp-controller="Register" asp-action="Index">
+        <label>Selecciona lo que necesites registrar:</label>
+        <select class="input-props-select" name="actionSelected">
+            <option value="">Selecciona...</option>
+            <option value="Alumno">Alumno</option>
+            <option value="Profesor">Profesor</option>
+            <option value="Administrador">Administrador</option>
+            <option value="Asignatura">Asignatura</option>
+            <option value="Paralelo">Paralelo</option>
+            <option value="Acta">Acta</option>
+            <option value="Matricula">Matricula</option>
+            <option value="Titulacion">Titulacion</option>
+            <option value="Campus">Campus</option>
+        </select>
+        <input class="submit-props btn btn-prop center txt-white txt-bold fz-16 color-yellow" type="submit" value="Ir" />
+    </form>
+
+</div>

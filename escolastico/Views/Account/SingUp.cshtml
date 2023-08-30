@@ -1,15 +1,16 @@
 ﻿@{
+    Layout = "_Layout";
     ViewData["Title"] = "Registro de usuario";
 }
 
-<div class="color-white flex-column centering">
+<div class="color-white flex-c center">
     <div class="singup-container color-d-blue">
         <header class="txt-center">
-            <h1 class="txt-white txt-f28px txt-bold">@ViewBag.Title</h1>
+            <h1 class="txt-white fz-28 txt-bold">@ViewBag.Title</h1>
         </header>
-        <div class="flex-row color-l-gray padding-a-20 border-n-r margin-a-20 centering gap-20">
+        <div class="flex-r color-l-gray pad-10 border-n-r mg-20 center gap-20">
             <img class="color-green border-n-r" src="~/assets/verify.png" />
-            <div class="flex-column centering gap-10">
+            <div class="flex-c center gap-10">
                 <span class="txt-bold txt-white">Nombre:</span>
                 <input class="input-props" type="text" value="@TempData["name_user"]" disabled/>
                 <span class="txt-bold txt-white">Apellido:</span>
@@ -18,20 +19,20 @@
                 <input class="input-props" type="text" value="@TempData["rol"]" disabled/>
             </div>
         </div>
-        <form asp-controller="Account" asp-action="SingUp" method="post" class="flex-column centering gap-10">
-            <div class="flex-column centering gap-10">
+        <form asp-controller="Account" asp-action="SingUp" method="post" class="flex-c center gap-10">
+            <div class="flex-c center gap-10">
                 <span hidden class="txt-bold txt-white">ID:</span>
                 <input hidden class="input-props" type="text" value="@TempData["idUser"]" name="idUser" required/>
                 <span class="txt-bold txt-white">Usuario:</span>
                 <input class="input-props" type="text" maxlength="20" required name="userName"/>
                 <span class="txt-bold txt-white">Contraseña:</span>
                 <input class="input-props" type="password" maxlength="20" required name="password" />
-                <span class="flex-row centering txt-bold">
+                <span class="flex-r centeR txt-bold">
                     <input class="check-box" type="checkbox" required/>
                     Aceptar términos y condiciones
                 </span>
             </div>
-            <input type="submit" value="Enviar" class="submit-props btn btn-prop color-yellow txt-f16px txt-white txt-bold" />
+            <input type="submit" value="Enviar" class="submit-props btn btn-prop color-yellow fz-16 txt-white txt-bold" />
             @if (ViewData["singup-msg"] != null)
             {
                 <div class="alert-container alert">
@@ -41,6 +42,6 @@
                 </div>
             }
         </form>
-        <footer class="txt-f12px txt-center txt-white">¿Ya posees una cuenta? <a asp-controller="Account" asp-action="Login" class="txt-white txt-bold">Iniciar Sesión</a> </footer>
+        <footer class="fz-12 txt-center txt-white">¿Ya posees una cuenta? <a asp-controller="Account" asp-action="Login" class="txt-white txt-bold">Iniciar Sesión</a> </footer>
     </div>
 </div>

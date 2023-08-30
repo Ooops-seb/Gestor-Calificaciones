@@ -14,10 +14,13 @@ builder.Services.AddDbContext<PrjEscolasticoContext>( options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("conexionSQL"));
 });
 
+builder.Services.AddScoped<ITitulacionService, TitulacionService>();
+builder.Services.AddScoped<ICampusService, CampusService>();
 builder.Services.AddScoped<IUsuarioService,UsuarioService>();
 builder.Services.AddScoped<IAdministradorService, AdministradorService>();
 builder.Services.AddScoped<IProfesorService, ProfesorService>();
 builder.Services.AddScoped<IAlumnoService, AlumnoService>();
+builder.Services.AddScoped<IAsignaturaService, AsignaturaService>();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
 {

@@ -34,7 +34,6 @@ namespace escolastico.Controllers
             return View();
         }
 
-        // TODO: Mejorar validacion de usuarios 
         [HttpPost]
         public async Task<ActionResult> Login(string userName, string password)
         {

@@ -21,5 +21,28 @@ namespace escolastico.Services.Implementation
             Administrador user_info = await _dbContext.Administradors.Where(a => a.UsuarioUsr == userName).FirstOrDefaultAsync();
             return user_info;
         }
+        public async Task<Administrador> NewRegister(Administrador newRegister)
+        {
+            _dbContext.Administradors.Add(newRegister);
+            await _dbContext.SaveChangesAsync();
+
+            return newRegister;
+        }
+        public async Task<string> GenerateNextId()
+        {
+            var lastAdmin = await _dbContext.Administradors.OrderByDescending(a => a.IdAdm).FirstOrDefaultAsync();
+
+            if (lastAdmin != null)
+            {
+                var lastId = lastAdmin.IdAdm;
+                var numericPart = int.Parse(lastId.Substring(1)) + 1;
+                var newId = "A" + numericPart.ToString("D4");
+                return newId;
+            }
+            else
+            {
+                return "A0001";
+            }
+        }
     }
 }
