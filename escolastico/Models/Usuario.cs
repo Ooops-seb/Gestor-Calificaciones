@@ -7,7 +7,7 @@ public partial class Usuario
 {
     public string UsuarioUsr { get; set; } = null!;
 
-    public string? PasswordUsr { get; set; }
+    public string PasswordUsr { get; set; } = null!;
 
     public virtual ICollection<Administrador> Administradors { get; set; } = new List<Administrador>();
 

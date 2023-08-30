@@ -20,12 +20,6 @@ namespace escolastico.Services.Implementation
         }
         public async Task<Usuario> SaveUser(string idUser, Usuario user)
         {
-            /*var create = $"INSERT INTO usuario VALUES ('{user.UsuarioUsr}', '{user.PasswordUsr}')";
-            await _dbContext.Database.ExecuteSqlRawAsync(create);
-
-            var update = $"UPDATE administrador SET usuario_usr = '{user.UsuarioUsr}' WHERE id_adm = '{idUser}'";
-            await _dbContext.Database.ExecuteSqlRawAsync(update);*/
-
             if(idUser.Substring(0,1) == "A")
             {
                 _dbContext.Usuarios.Add(user);

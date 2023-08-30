@@ -15,6 +15,8 @@ public partial class Administrador
 
     public DateTime? FechaNacimientoAdm { get; set; }
 
+    public string? DireccionAdm { get; set; }
+
     public string? TelefonoAdm { get; set; }
 
     public string? CorreoAdm { get; set; }

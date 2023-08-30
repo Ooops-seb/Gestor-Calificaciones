@@ -13,7 +13,15 @@ public partial class Alumno
 
     public string? ApellidoAlu { get; set; }
 
+    public string? IdCam { get; set; }
+
+    public string? IdTit { get; set; }
+
+    public short? CreditosAprobadosAlu { get; set; }
+
     public DateTime? FechaNacimientoAlu { get; set; }
+
+    public string? DireccionAlu { get; set; }
 
     public string? TelefonoAlu { get; set; }
 
@@ -24,6 +32,16 @@ public partial class Alumno
     public string? ObservacionesAlu { get; set; }
 
     public string? UsuarioUsr { get; set; }
+
+    public virtual ICollection<Calificacion> Calificacions { get; set; } = new List<Calificacion>();
+
+    public virtual ICollection<HistorialAcademico> HistorialAcademicos { get; set; } = new List<HistorialAcademico>();
+
+    public virtual Campus? IdCamNavigation { get; set; }
+
+    public virtual Titulacion? IdTitNavigation { get; set; }
+
+    public virtual ICollection<Matricula> Matriculas { get; set; } = new List<Matricula>();
 
     public virtual Usuario? UsuarioUsrNavigation { get; set; }
 }
