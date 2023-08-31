@@ -1,7 +1,39 @@
 ﻿@{
     Layout = "_LayoutApp";
+    ViewData["Title"] = "Nueva Paralelo";
 }
 
-<div>
-    Paralelo
+<div class="flex-c center mg-10">
+    <h1 class="title txt-white">@ViewBag.Title</h1>
+    @if (ViewData["MSG"] == "Registro realizado correctamente")
+    {
+        <div class="alert-container alert-green">
+            <div class="txt-white">
+                @ViewData["MSG"]
+            </div>
+        </div>
+    }
+    else if (ViewData["MSG"] != null)
+    {
+        <div class="alert-container alert-red">
+            <div class="txt-white">
+                @ViewData["MSG"]
+            </div>
+        </div>
+    }
+    <form method="post" class="form pad-20 flex-c center gap-10">
+        <span class="txt-white txt-bold fz-20">Nombre</span>
+        <select class="input-props-select" required name="nombre">
+            <option value="">Selecciona...</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+        </select>
+
+        <span class="txt-white txt-bold fz-20">Horario</span>
+        <input class="input-props" type="text" maxlength="20" placeholder="HH:MM - HH:MM" required name="horario" />
+
+        <input class="submit-props btn btn-prop center txt-white txt-bold fz-16 color-yellow" type="submit" value="Registrar" asp-controller="Register" asp-action="Paralelo" />
+    </form>
+
 </div>

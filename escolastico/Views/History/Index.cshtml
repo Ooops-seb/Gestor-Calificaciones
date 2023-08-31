@@ -1,7 +1,31 @@
 ﻿@{
     Layout = "_LayoutApp";
+    ViewData["Title"] = "Auditoría";
 }
 
-<div>
-    History
+<div class="container">
+    <h1 class="txt-center txt-white">Auditoría</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Fecha</th>
+                <th>Usuario</th>
+                <th>Tabla Afectada</th>
+                <th>Sentencia</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var registro in Model)
+            {
+                <tr>
+                    <td>@registro.IdAud</td>
+                    <td>@registro.Fecha</td>
+                    <td>@registro.Usuario</td>
+                    <td>@registro.TablaAfectada</td>
+                    <td>@registro.Sentencia</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>

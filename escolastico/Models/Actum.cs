@@ -7,15 +7,7 @@ public partial class Actum
 {
     public string IdAct { get; set; } = null!;
 
-    public string IdAsi { get; set; } = null!;
+    public string? IdCal { get; set; }
 
-    public string IdPar { get; set; } = null!;
-
-    public virtual ICollection<Calificacion> Calificacions { get; set; } = new List<Calificacion>();
-
-    public virtual ICollection<HistorialAcademico> HistorialAcademicos { get; set; } = new List<HistorialAcademico>();
-
-    public virtual Asignatura IdAsiNavigation { get; set; } = null!;
-
-    public virtual Paralelo IdParNavigation { get; set; } = null!;
+    public virtual Calificacion? IdCalNavigation { get; set; }
 }

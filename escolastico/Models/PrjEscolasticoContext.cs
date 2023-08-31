@@ -29,8 +29,6 @@ public partial class PrjEscolasticoContext : DbContext
 
     public virtual DbSet<Campus> Campuses { get; set; }
 
-    public virtual DbSet<HistorialAcademico> HistorialAcademicos { get; set; }
-
     public virtual DbSet<Matricula> Matriculas { get; set; }
 
     public virtual DbSet<Paralelo> Paralelos { get; set; }
@@ -53,24 +51,14 @@ public partial class PrjEscolasticoContext : DbContext
                 .HasMaxLength(5)
                 .IsUnicode(false)
                 .HasColumnName("id_act");
-            entity.Property(e => e.IdAsi)
+            entity.Property(e => e.IdCal)
                 .HasMaxLength(5)
                 .IsUnicode(false)
-                .HasColumnName("id_asi");
-            entity.Property(e => e.IdPar)
-                .HasMaxLength(5)
-                .IsUnicode(false)
-                .HasColumnName("id_par");
+                .HasColumnName("id_cal");
 
-            entity.HasOne(d => d.IdAsiNavigation).WithMany(p => p.Acta)
-                .HasForeignKey(d => d.IdAsi)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("id_asi_act_fk");
-
-            entity.HasOne(d => d.IdParNavigation).WithMany(p => p.Acta)
-                .HasForeignKey(d => d.IdPar)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("id_par_act_fk");
+            entity.HasOne(d => d.IdCalNavigation).WithMany(p => p.Acta)
+                .HasForeignKey(d => d.IdCal)
+                .HasConstraintName("id_cal_act_fk");
         });
 
         modelBuilder.Entity<Administrador>(entity =>
@@ -224,7 +212,7 @@ public partial class PrjEscolasticoContext : DbContext
 
         modelBuilder.Entity<Auditorium>(entity =>
         {
-            entity.HasKey(e => e.IdAud).HasName("PK__Auditori__6BE84EABC5434744");
+            entity.HasKey(e => e.IdAud).HasName("PK__Auditori__6BE84EAB190C8EB7");
 
             entity.Property(e => e.IdAud).HasColumnName("id_aud");
             entity.Property(e => e.Fecha)
@@ -245,7 +233,7 @@ public partial class PrjEscolasticoContext : DbContext
 
         modelBuilder.Entity<Calificacion>(entity =>
         {
-            entity.HasKey(e => e.IdCal).HasName("id__cal_pk");
+            entity.HasKey(e => e.IdCal).HasName("id_cal_pk");
 
             entity.ToTable("Calificacion");
 
@@ -253,26 +241,10 @@ public partial class PrjEscolasticoContext : DbContext
                 .HasMaxLength(5)
                 .IsUnicode(false)
                 .HasColumnName("id_cal");
-            entity.Property(e => e.EditableCal)
-                .HasMaxLength(1)
-                .IsFixedLength()
-                .HasColumnName("editable_cal");
-            entity.Property(e => e.IdAct)
+            entity.Property(e => e.IdMat)
                 .HasMaxLength(5)
                 .IsUnicode(false)
-                .HasColumnName("id_act");
-            entity.Property(e => e.IdAlu)
-                .HasMaxLength(5)
-                .IsUnicode(false)
-                .HasColumnName("id_alu");
-            entity.Property(e => e.IdAsi)
-                .HasMaxLength(5)
-                .IsUnicode(false)
-                .HasColumnName("id_asi");
-            entity.Property(e => e.IdPar)
-                .HasMaxLength(5)
-                .IsUnicode(false)
-                .HasColumnName("id_par");
+                .HasColumnName("id_mat");
             entity.Property(e => e.NotaU1Cal)
                 .HasColumnType("decimal(4, 2)")
                 .HasColumnName("notaU1_cal");
@@ -283,25 +255,10 @@ public partial class PrjEscolasticoContext : DbContext
                 .HasColumnType("decimal(4, 2)")
                 .HasColumnName("notau3_cal");
 
-            entity.HasOne(d => d.IdActNavigation).WithMany(p => p.Calificacions)
-                .HasForeignKey(d => d.IdAct)
+            entity.HasOne(d => d.IdMatNavigation).WithMany(p => p.Calificacions)
+                .HasForeignKey(d => d.IdMat)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("id_act_cal_fk");
-
-            entity.HasOne(d => d.IdAluNavigation).WithMany(p => p.Calificacions)
-                .HasForeignKey(d => d.IdAlu)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("id_alu_cal_fk");
-
-            entity.HasOne(d => d.IdAsiNavigation).WithMany(p => p.Calificacions)
-                .HasForeignKey(d => d.IdAsi)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("id_asi_cal_fk");
-
-            entity.HasOne(d => d.IdParNavigation).WithMany(p => p.Calificacions)
-                .HasForeignKey(d => d.IdPar)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("id_par_cal_fk");
+                .HasConstraintName("id_mat_cal_fk");
         });
 
         modelBuilder.Entity<Campus>(entity =>
@@ -322,63 +279,6 @@ public partial class PrjEscolasticoContext : DbContext
                 .HasMaxLength(100)
                 .IsUnicode(false)
                 .HasColumnName("nombre_cam");
-        });
-
-        modelBuilder.Entity<HistorialAcademico>(entity =>
-        {
-            entity.HasKey(e => e.IdHis).HasName("id_his_pk");
-
-            entity.ToTable("HistorialAcademico");
-
-            entity.Property(e => e.IdHis)
-                .HasMaxLength(5)
-                .IsUnicode(false)
-                .HasColumnName("id_his");
-            entity.Property(e => e.IdAct)
-                .HasMaxLength(5)
-                .IsUnicode(false)
-                .HasColumnName("id_act");
-            entity.Property(e => e.IdAlu)
-                .HasMaxLength(5)
-                .IsUnicode(false)
-                .HasColumnName("id_alu");
-            entity.Property(e => e.IdAsi)
-                .HasMaxLength(5)
-                .IsUnicode(false)
-                .HasColumnName("id_asi");
-            entity.Property(e => e.IdCal)
-                .HasMaxLength(5)
-                .IsUnicode(false)
-                .HasColumnName("id_cal");
-            entity.Property(e => e.IdPar)
-                .HasMaxLength(5)
-                .IsUnicode(false)
-                .HasColumnName("id_par");
-
-            entity.HasOne(d => d.IdActNavigation).WithMany(p => p.HistorialAcademicos)
-                .HasForeignKey(d => d.IdAct)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("id_act_his_fk");
-
-            entity.HasOne(d => d.IdAluNavigation).WithMany(p => p.HistorialAcademicos)
-                .HasForeignKey(d => d.IdAlu)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("id_alu_his_fk");
-
-            entity.HasOne(d => d.IdAsiNavigation).WithMany(p => p.HistorialAcademicos)
-                .HasForeignKey(d => d.IdAsi)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("id_asi_his_fk");
-
-            entity.HasOne(d => d.IdCalNavigation).WithMany(p => p.HistorialAcademicos)
-                .HasForeignKey(d => d.IdCal)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("id_cal_his_fk");
-
-            entity.HasOne(d => d.IdParNavigation).WithMany(p => p.HistorialAcademicos)
-                .HasForeignKey(d => d.IdPar)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("id_par_his_fk");
         });
 
         modelBuilder.Entity<Matricula>(entity =>
@@ -435,15 +335,10 @@ public partial class PrjEscolasticoContext : DbContext
                 .HasMaxLength(20)
                 .IsUnicode(false)
                 .HasColumnName("horario_par");
-            entity.Property(e => e.IdAsi)
-                .HasMaxLength(5)
+            entity.Property(e => e.NombrePar)
+                .HasMaxLength(1)
                 .IsUnicode(false)
-                .HasColumnName("id_asi");
-
-            entity.HasOne(d => d.IdAsiNavigation).WithMany(p => p.Paralelos)
-                .HasForeignKey(d => d.IdAsi)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("id_asi_par_fk");
+                .HasColumnName("nombre_par");
         });
 
         modelBuilder.Entity<Profesor>(entity =>

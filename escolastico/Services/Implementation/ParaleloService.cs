@@ -1,32 +1,31 @@
 ﻿using escolastico.Models;
 using escolastico.Services.Contract;
 using Microsoft.EntityFrameworkCore;
-using System;
 
 namespace escolastico.Services.Implementation
 {
-    public class TitulacionService :ITitulacionService
+    public class ParaleloService : IParaleloService
     {
         private readonly PrjEscolasticoContext _dbContext;
         private readonly IAuditoriaService _auditoriaService;
-
-        public TitulacionService(PrjEscolasticoContext dbContext, IAuditoriaService auditoriaService)
+        public ParaleloService(PrjEscolasticoContext dbContext, IAuditoriaService auditoriaService)
         {
             _dbContext = dbContext;
             _auditoriaService = auditoriaService;
         }
-        public async Task<List<Titulacion>> GetTitulacionList()
+    
+        public async Task<List<Paralelo>> GetParaleloList()
         {
-            return await _dbContext.Titulacions.ToListAsync();
+            return await _dbContext.Paralelos.ToListAsync();
         }
-        public async Task<Titulacion> NewRegister(Titulacion newRegister, string usuarioActual)
+        public async Task<Paralelo> NewRegister(Paralelo newRegister, string usuarioActual)
         {
-            _dbContext.Titulacions.Add(newRegister);
+            _dbContext.Paralelos.Add(newRegister);
             await _dbContext.SaveChangesAsync();
 
-            string tablaAfectada = "Titulacion";
+            string tablaAfectada = "Paralelo";
             string sentencia = "INSERT";
-            string detalles = $"ID: {newRegister.IdTit}, Nombre: {newRegister.NombreTit}, Creditos: {newRegister.CreditosTotalesTit}";
+            string detalles = $"ID: {newRegister.IdPar}, Nombre: {newRegister.NombrePar},Horario: {newRegister.HorarioPar}, Alumnos: {newRegister.AlumnosRegistradosPar}";
             string sentenciaCompleta = $"{sentencia}: {detalles}";
             _auditoriaService.Audit(usuarioActual, tablaAfectada, sentenciaCompleta);
 
@@ -34,18 +33,18 @@ namespace escolastico.Services.Implementation
         }
         public async Task<string> GenerateNextId()
         {
-            var lastTit = await _dbContext.Titulacions.OrderByDescending(a => a.IdTit).FirstOrDefaultAsync();
+            var lastPar = await _dbContext.Paralelos.OrderByDescending(a => a.IdPar).FirstOrDefaultAsync();
 
-            if (lastTit != null)
+            if (lastPar != null)
             {
-                var lastId = lastTit.IdTit;
+                var lastId = lastPar.IdPar;
                 var numericPart = int.Parse(lastId.Substring(1)) + 1;
-                var newId = "T" + numericPart.ToString("D4");
+                var newId = "N" + numericPart.ToString("D4");
                 return newId;
             }
             else
             {
-                return "T0001";
+                return "N0001";
             }
         }
     }

@@ -5,8 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using escolastico.Services.Contract;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.View;
-using Microsoft.Extensions.Primitives;
+using System.Security.Claims;
 
 namespace escolastico.Controllers.EscolasticControl
 {
@@ -19,13 +18,21 @@ namespace escolastico.Controllers.EscolasticControl
         private readonly IAlumnoService _alumnoService;
         private readonly IProfesorService _profesorService;
         private readonly IAsignaturaService _asignaturaService;
+        private readonly IParaleloService _paraleloService;
+        private readonly IMatriculaService _matriculaService;
+        private readonly IActaService _actaService;
+        private readonly ICalificacionesService _calificacionesService;
         public RegisterController(
             IAdministradorService administradorService, 
             ICampusService campusService, 
             ITitulacionService titulacionService,
             IAlumnoService alumnoService,
             IProfesorService profesorService,
-            IAsignaturaService asignaturaService)
+            IAsignaturaService asignaturaService,
+            IParaleloService paraleloService,
+            IMatriculaService matriculaService,
+            IActaService actaService,
+            ICalificacionesService calificacionesService)
         {
             _administradorService = administradorService;
             _campusService = campusService;
@@ -33,6 +40,10 @@ namespace escolastico.Controllers.EscolasticControl
             _alumnoService = alumnoService;
             _profesorService = profesorService;
             _asignaturaService = asignaturaService;
+            _paraleloService = paraleloService;
+            _matriculaService = matriculaService;
+            _actaService = actaService;
+            _calificacionesService = calificacionesService;
         }
 
         public IActionResult Index()
@@ -62,6 +73,8 @@ namespace escolastico.Controllers.EscolasticControl
                     return RedirectToAction("Titulacion");
                 case "Campus":
                     return RedirectToAction("Campus");
+                case "Calificaciones":
+                    return RedirectToAction("Calificaciones");
             }
             return View();
         }
@@ -101,7 +114,9 @@ namespace escolastico.Controllers.EscolasticControl
                 ObservacionesAlu = observaciones
             };
 
-            var result = await _alumnoService.NewRegister(nuevoAlumno);
+            var userName = User.FindFirst(ClaimTypes.Name)?.Value;
+
+            var result = await _alumnoService.NewRegister(nuevoAlumno, userName);
 
             if (result != null)
             {
@@ -132,7 +147,9 @@ namespace escolastico.Controllers.EscolasticControl
                 GeneroPro = genero
             };
 
-            var result = await _profesorService.NewRegister(nuevoProfesor);
+            var userName = User.FindFirst(ClaimTypes.Name)?.Value;
+
+            var result = await _profesorService.NewRegister(nuevoProfesor, userName);
 
             if (result != null)
             {
@@ -163,7 +180,9 @@ namespace escolastico.Controllers.EscolasticControl
                 GeneroAdm = genero
             };
 
-            var result = await _administradorService.NewRegister(nuevoAdministrador);
+            var userName = User.FindFirst(ClaimTypes.Name)?.Value;
+
+            var result = await _administradorService.NewRegister(nuevoAdministrador, userName);
 
             if(result != null)
             {
@@ -192,6 +211,8 @@ namespace escolastico.Controllers.EscolasticControl
 
             byte.TryParse(creditos, out byte creditosParam);
 
+            var userName = User.FindFirst(ClaimTypes.Name)?.Value;
+
             var nuevaAsignatura = new Asignatura
             {
                 IdAsi = await _asignaturaService.GenerateNextId(),
@@ -200,7 +221,7 @@ namespace escolastico.Controllers.EscolasticControl
                 IdPro = profesor
             };
 
-            var result = await _asignaturaService.NewRegister(nuevaAsignatura);
+            var result = await _asignaturaService.NewRegister(nuevaAsignatura, userName);
 
             if (result != null)
             {
@@ -216,12 +237,86 @@ namespace escolastico.Controllers.EscolasticControl
             return View();
         }
         [HttpPost]
-        public async Task<ActionResult> Paralelo()
+        public async Task<ActionResult> Paralelo(string nombre, string horario)
         {
+            var userName = User.FindFirst(ClaimTypes.Name)?.Value;
+
+            var nuevoParalelo = new Paralelo
+            {
+                IdPar = await _paraleloService.GenerateNextId(),
+                NombrePar = nombre,
+                HorarioPar = horario,
+            };
+
+            var result = await _paraleloService.NewRegister(nuevoParalelo, userName);
+
+            if (result != null)
+            {
+                ViewData["MSG"] = "Registro realizado correctamente";
+                return View();
+            }
+
+            ViewData["MSG"] = "Error de registro";
             return View();
         }
         public IActionResult Matricula()
         {
+            var asigList = _asignaturaService.GetAsignaturaList().Result;
+
+            ViewBag.AsigList = new SelectList(asigList, "IdAsi", "NombreAsi");
+
+            var aluList = _alumnoService.GetAlumnoList().Result;
+
+            ViewBag.AluList = new SelectList(aluList, "IdAlu", "NombreAlu", "ApellidoAlu");
+
+            var paraList = _paraleloService.GetParaleloList().Result;
+
+            ViewBag.ParaList = new SelectList(paraList, "IdPar", "IdPar");
+
+            return View();
+        }
+        [HttpPost]
+        public async Task<ActionResult> Matricula(string alumno, string asignatura, string paralelo)
+        {
+            var asigList = _asignaturaService.GetAsignaturaList().Result;
+            ViewBag.AsigList = new SelectList(asigList, "IdAsi", "NombreAsi");
+
+            var aluList = _alumnoService.GetAlumnoList().Result;
+            ViewBag.AluList = new SelectList(aluList, "IdAlu", "NombreAlu", "ApellidoAlu");
+
+            var paraList = _paraleloService.GetParaleloList().Result;
+            ViewBag.ParaList = new SelectList(paraList, "IdPar", "IdPar");
+
+            var userName = User.FindFirst(ClaimTypes.Name)?.Value;
+
+            var nuevaMatricula = new Matricula
+            {
+                IdMat = await _matriculaService.GenerateNextId(),
+                IdAlu = alumno,
+                IdAsi = asignatura,
+                IdPar = paralelo
+            };
+
+            var result = await _matriculaService.NewRegister(nuevaMatricula, userName);
+
+            if (result != null)
+            {
+                var nuevaCalificacion = new Calificacion
+                {
+                    IdCal = await _calificacionesService.GenerateNextId(),
+                    IdMat = nuevaMatricula.IdMat
+                };
+
+                var calificacionResult = await _calificacionesService.NewRegister(nuevaCalificacion, userName);
+
+                if (calificacionResult != null)
+                {
+                    ViewData["MSG"] = "Registro realizado correctamente";
+                    return View();
+                }
+            }
+
+            ViewData["MSG"] = "Error de registro";
             return View();
         }
         public IActionResult Titulacion()
@@ -240,7 +335,9 @@ namespace escolastico.Controllers.EscolasticControl
                 CreditosTotalesTit = creditosParam,
             };
 
-            var result = await _titulacionService.NewRegister(nuevaTitulacion);
+            var userName = User.FindFirst(ClaimTypes.Name)?.Value;
+
+            var result = await _titulacionService.NewRegister(nuevaTitulacion, userName);
 
             if(result != null)
             {
@@ -265,7 +362,9 @@ namespace escolastico.Controllers.EscolasticControl
                 DireccionCam = direccion,
             };
 
-            var result = await _campusService.NewRegister(nuevoCampus);
+            var userName = User.FindFirst(ClaimTypes.Name)?.Value;
+
+            var result = await _campusService.NewRegister(nuevoCampus, userName);
 
             if (result != null)
             {
@@ -276,5 +375,57 @@ namespace escolastico.Controllers.EscolasticControl
             ViewData["MSG"] = "Error de registro";
             return View();
         }
+        public IActionResult Acta()
+        {
+            var asigList = _asignaturaService.GetAsignaturaList().Result;
+            ViewBag.AsigList = new SelectList(asigList, "IdAsi", "NombreAsi");
+
+            var aluList = _alumnoService.GetAlumnoList().Result;
+            ViewBag.AluList = new SelectList(aluList, "IdAlu", "NombreAlu", "ApellidoAlu");
+
+            var paraList = _paraleloService.GetParaleloList().Result;
+            ViewBag.ParaList = new SelectList(paraList, "IdPar", "IdPar");
+            return View();
+        }
+        [HttpPost]
+        public async Task<ActionResult> Acta(string asignatura, string paralelo)
+        {
+            var asigList = _asignaturaService.GetAsignaturaList().Result;
+            ViewBag.AsigList = new SelectList(asigList, "IdAsi", "NombreAsi");
+
+            var paraList = _paraleloService.GetParaleloList().Result;
+            ViewBag.ParaList = new SelectList(paraList, "IdPar", "IdPar");
+
+            var userName = User.FindFirst(ClaimTypes.Name)?.Value;
+
+            var alumnosMatriculados = await _matriculaService.GetAlumnosMatriculados(asignatura, paralelo);
+
+            foreach (var alumnoMatriculado in alumnosMatriculados)
+            {
+                var calificacion = alumnoMatriculado.Matriculas.FirstOrDefault()?.Calificacions.FirstOrDefault();
+                if (calificacion != null)
+                {
+                    var nuevaActa = new Actum
+                    {
+                        IdAct = await _actaService.GenerateNextId(),
+                        IdCal = calificacion.IdCal
+                    };
+
+                    var actaResult = await _actaService.NewRegister(nuevaActa, userName);
+                }
+            }
+
+            ViewData["MSG"] = "Registro realizado correctamente";
+            return View();
+        }
+
+        public IActionResult Calificaciones()
+        {
+            var matList = _matriculaService.GetMatriculaList().Result;
+            ViewBag.MatList = new SelectList(matList, "IdMat", "IdAlu");
+
+            return View();
+        }
+
     }
 }

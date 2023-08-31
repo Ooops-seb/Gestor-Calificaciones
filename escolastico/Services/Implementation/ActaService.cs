@@ -4,27 +4,27 @@ using Microsoft.EntityFrameworkCore;
 
 namespace escolastico.Services.Implementation
 {
-    public class CampusService: ICampusService
+    public class ActaService : IActaService
     {
         public readonly PrjEscolasticoContext _dbContext;
         private readonly IAuditoriaService _auditoriaService;
-        public CampusService(PrjEscolasticoContext dbContext, IAuditoriaService auditoriaService)
+        public ActaService(PrjEscolasticoContext dbContext, IAuditoriaService auditoriaService)
         {
             _dbContext = dbContext;
             _auditoriaService = auditoriaService;
         }
-        public async Task<List<Campus>> GetCampusList()
+        public async Task<List<Actum>> GetActumList()
         {
-            return await _dbContext.Campuses.ToListAsync();
+            return await _dbContext.Acta.ToListAsync();
         }
-        public async Task<Campus> NewRegister(Campus newRegister, string usuarioActual)
+        public async Task<Actum> NewRegister(Actum newRegister, string usuarioActual)
         {
-            _dbContext.Campuses.Add(newRegister);
+            _dbContext.Acta.Add(newRegister);
             await _dbContext.SaveChangesAsync();
 
-            string tablaAfectada = "Campus";
+            string tablaAfectada = "Acta";
             string sentencia = "INSERT";
-            string detalles = $"ID: {newRegister.IdCam}, Nombre: {newRegister.NombreCam}, Direccion: {newRegister.DireccionCam}";
+            string detalles = $"ID: {newRegister.IdAct} Calificacion: {newRegister.IdCal}";
             string sentenciaCompleta = $"{sentencia}: {detalles}";
             _auditoriaService.Audit(usuarioActual, tablaAfectada, sentenciaCompleta);
 
@@ -32,18 +32,18 @@ namespace escolastico.Services.Implementation
         }
         public async Task<string> GenerateNextId()
         {
-            var lastCamp = await _dbContext.Campuses.OrderByDescending(a => a.IdCam).FirstOrDefaultAsync();
+            var lastAct = await _dbContext.Acta.OrderByDescending(a => a.IdAct).FirstOrDefaultAsync();
 
-            if (lastCamp != null)
+            if (lastAct != null)
             {
-                var lastId = lastCamp.IdCam;
+                var lastId = lastAct.IdAct;
                 var numericPart = int.Parse(lastId.Substring(1)) + 1;
-                var newId = "C" + numericPart.ToString("D4");
+                var newId = "D" + numericPart.ToString("D4");
                 return newId;
             }
             else
             {
-                return "C0001";
+                return "D0001";
             }
         }
     }

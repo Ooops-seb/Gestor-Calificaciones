@@ -33,10 +33,6 @@ public partial class Alumno
 
     public string? UsuarioUsr { get; set; }
 
-    public virtual ICollection<Calificacion> Calificacions { get; set; } = new List<Calificacion>();
-
-    public virtual ICollection<HistorialAcademico> HistorialAcademicos { get; set; } = new List<HistorialAcademico>();
-
     public virtual Campus? IdCamNavigation { get; set; }
 
     public virtual Titulacion? IdTitNavigation { get; set; }

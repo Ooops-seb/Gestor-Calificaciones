@@ -21,6 +21,11 @@ builder.Services.AddScoped<IAdministradorService, AdministradorService>();
 builder.Services.AddScoped<IProfesorService, ProfesorService>();
 builder.Services.AddScoped<IAlumnoService, AlumnoService>();
 builder.Services.AddScoped<IAsignaturaService, AsignaturaService>();
+builder.Services.AddScoped<IAuditoriaService, AuditoriaService>();
+builder.Services.AddScoped<IMatriculaService, MatriculaService>();
+builder.Services.AddScoped<IParaleloService, ParaleloService>();
+builder.Services.AddScoped<IActaService, ActaService>();
+builder.Services.AddScoped<ICalificacionesService, CalificacionesService>();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
 {

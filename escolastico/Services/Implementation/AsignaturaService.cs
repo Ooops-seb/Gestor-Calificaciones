@@ -7,18 +7,27 @@ namespace escolastico.Services.Implementation
     public class AsignaturaService :IAsignaturaService
     {
         public readonly PrjEscolasticoContext _dbContext;
-        public AsignaturaService(PrjEscolasticoContext dbContext)
+        private readonly IAuditoriaService _auditoriaService;
+        public AsignaturaService(PrjEscolasticoContext dbContext, IAuditoriaService auditoriaService)
         {
             _dbContext = dbContext;
+            _auditoriaService = auditoriaService;
         }
         public async Task<List<Asignatura>> GetAsignaturaList()
         {
             return await _dbContext.Asignaturas.ToListAsync();
         }
-        public async Task<Asignatura> NewRegister(Asignatura newRegister)
+        public async Task<Asignatura> NewRegister(Asignatura newRegister, string usuarioActual)
         {
             _dbContext.Asignaturas.Add(newRegister);
             await _dbContext.SaveChangesAsync();
+
+            string tablaAfectada = "Asignatura";
+            string sentencia = "INSERT";
+            string detalles = $"ID: {newRegister.IdAsi} Nombre: {newRegister.NombreAsi}, Créditos: {newRegister.CreditosAsi}, Profesor: {newRegister.IdPro}";
+            string sentenciaCompleta = $"{sentencia}: {detalles}";
+            _auditoriaService.Audit(usuarioActual, tablaAfectada, sentenciaCompleta);
+
             return newRegister;
         }
         public async Task<string> GenerateNextId()

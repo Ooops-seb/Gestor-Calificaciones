@@ -1,6 +1,9 @@
 ﻿@{
     Layout = "_LayoutApp";
     ViewData["Title"] = "Escolastico";
+    ClaimsPrincipal claimUser = Context.User;
+    string role = claimUser.Claims.Where(c => c.Type == ClaimTypes.Role).Select(c => c.Value).SingleOrDefault();
+
 }
 
 <div class="color-yellow">
@@ -8,24 +11,30 @@
     <div class="flex-c center mg-10">
         <h1 class="title txt-white">Inicio</h1>
         <div class="options mg-10">
-            <a class="options-container pad-10" asp-controller="Register" asp-action="Index">
-                <label class="txt-white txt-bold fz-16">Registrar</label>
-                <p class="txt-white fz-12">
-                    Actas, paralelos, asignaturas, usuarios, estudiantes, profesores, titulaciones.
-                </p>
-            </a>
+            @if (role != "Alumno")
+            {
+                <a class="options-container pad-10" asp-controller="Register" asp-action="Index">
+                    <label class="txt-white txt-bold fz-16">Registrar</label>
+                    <p class="txt-white fz-12">
+                        Actas, paralelos, asignaturas, usuarios, estudiantes, profesores, titulaciones.
+                    </p>
+                </a>
+            }
             <a class="options-container" asp-controller="Query" asp-action="Index">
                 <label class="txt-white txt-bold fz-16">Consultas</label>
                 <p class="txt-white fz-12">
                     Estado de matriculas, actas, paralelos, asignaturas, usuarios, estudiantes, profesores, titulaciones, etc.
                 </p>
             </a>
-            <a class="options-container" asp-controller="History" asp-action="Index">
-                <label class="txt-white txt-bold fz-16">Historial</label>
-                <p class="txt-white fz-12">
-                    Revisa el historial completo de transacciones.
-                </p>
-            </a>
+            @if (role == "Administrador")
+            {
+                <a class="options-container" asp-controller="History" asp-action="Index">
+                    <label class="txt-white txt-bold fz-16">Historial</label>
+                    <p class="txt-white fz-12">
+                        Revisa el historial completo de transacciones.
+                    </p>
+                </a>
+            }
         </div>
     </div>
 </div>

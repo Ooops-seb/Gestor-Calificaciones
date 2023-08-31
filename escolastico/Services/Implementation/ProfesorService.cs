@@ -7,9 +7,11 @@ namespace escolastico.Services.Implementation
     public class ProfesorService : IProfesorService
     {
         public readonly PrjEscolasticoContext _dbContext;
-        public ProfesorService(PrjEscolasticoContext dbContext)
+        private readonly IAuditoriaService _auditoriaService;
+        public ProfesorService(PrjEscolasticoContext dbContext, IAuditoriaService auditoriaService)
         {
             _dbContext = dbContext;
+            _auditoriaService = auditoriaService;
         }
         public async Task<Profesor> FindUser(string idUser)
         {
@@ -26,10 +28,16 @@ namespace escolastico.Services.Implementation
         {
             return await _dbContext.Profesors.ToListAsync();
         }
-        public async Task<Profesor> NewRegister(Profesor newRegister)
+        public async Task<Profesor> NewRegister(Profesor newRegister, string usuarioActual)
         {
             _dbContext.Profesors.Add(newRegister);
             await _dbContext.SaveChangesAsync();
+
+            string tablaAfectada = "Profesor";
+            string sentencia = "INSERT";
+            string detalles = $"ID: {newRegister.IdPro}, Cedula: {newRegister.CedulaPro}, Nombre: {newRegister.NombrePro}, Apellido: {newRegister.ApellidoPro}, Fecha Nacimiento: {newRegister.FechaNacimientoPro}, Direccion: {newRegister.DireccionPro}, Telefono: {newRegister.TelefonoPro}, Correo: {newRegister.CorreoPro}, Genero: {newRegister.GeneroPro}, Usuario: {newRegister.UsuarioUsr}";
+            string sentenciaCompleta = $"{sentencia}: {detalles}";
+            _auditoriaService.Audit(usuarioActual, tablaAfectada, sentenciaCompleta);
 
             return newRegister;
         }

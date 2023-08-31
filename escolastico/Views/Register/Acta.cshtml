@@ -1,6 +1,6 @@
 ﻿@{
     Layout = "_LayoutApp";
-    ViewData["Title"] = "Nueva Matricula";
+    ViewData["Title"] = "Generar Acta";
 }
 
 <div class="flex-c center mg-10">
@@ -22,15 +22,6 @@
         </div>
     }
     <form method="post" class="form pad-20 flex-c center gap-10">
-        
-        <span class="txt-white txt-bold fz-20">Alumno</span>
-        <select class="input-props-select" required name="alumno">
-            <option value="">Seleccione un alumno...</option>
-            @foreach (var alumno in ViewBag.AluList)
-            {
-                <option value="@alumno.Value">@($"{alumno.Text} {alumno.Value}")</option>
-            }
-        </select>
 
         <span class="txt-white txt-bold fz-20">Asignatura</span>
         <select class="input-props-select" required name="asignatura">
@@ -50,7 +41,7 @@
             }
         </select>
 
-        <input class="submit-props btn btn-prop center txt-white txt-bold fz-16 color-yellow" type="submit" value="Registrar" asp-controller="Register" asp-action="Matricula" />
+        <input class="submit-props btn btn-prop center txt-white txt-bold fz-16 color-yellow" type="submit" value="Registrar" asp-controller="Register" asp-action="Acta" />
     </form>
 
 </div>

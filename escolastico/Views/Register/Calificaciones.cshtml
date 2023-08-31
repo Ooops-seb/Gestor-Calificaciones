@@ -1,0 +1,51 @@
+﻿@{
+    Layout = "_LayoutApp";
+    ViewData["Title"] = "Nuevo Alumno";
+}
+
+<div class="flex-c center mg-10">
+    <h1 class="title txt-white">@ViewBag.Title</h1>
+    @if (ViewData["MSG"] == "Registro realizado correctamente")
+    {
+        <div class="alert-container alert-green">
+            <div class="txt-white">
+                @ViewData["MSG"]
+            </div>
+        </div>
+    }
+    else if (ViewData["MSG"] != null)
+    {
+        <div class="alert-container alert-red">
+            <div class="txt-white">
+                @ViewData["MSG"]
+            </div>
+        </div>
+    }
+    <form method="post" class="form pad-20 flex-c center gap-10">
+        <span class="txt-white txt-bold fz-20">Cedula</span>
+        <input class="input-props" type="text" maxlength="10" placeholder="Ingrese su cedula" required name="cedula" />
+
+        <span class="txt-white txt-bold fz-20">Nombre</span>
+        <input class="input-props" type="text" maxlength="50" placeholder="Ingrese su nombre" required name="nombre" />
+
+        <span class="txt-white txt-bold fz-20">Apellido</span>
+        <input class="input-props" type="text" maxlength="50" placeholder="Ingrese su apellido" required name="apellido" />
+
+        <span class="txt-white txt-bold fz-20">Campus</span>
+        <select class="input-props-select" required name="matricula">
+            <option value="">Seleccione una matricula...</option>
+            @foreach (var matricula in ViewBag.MatList)
+            {
+                <option value="@matricula.Value">@matricula.Text</option>
+            }
+        </select>
+
+        <span class="txt-white txt-bold fz-20">Titulación</span>
+
+        <span class="txt-white txt-bold fz-20">Observaciones</span>
+        <input class="input-props" type="text" maxlength="250" placeholder="Ingrese sus observaciones" required name="observaciones" />
+
+        <input class="submit-props btn btn-prop center txt-white txt-bold fz-16 color-yellow" type="submit" value="Registrar" asp-controller="Register" asp-action="Calificaciones" />
+    </form>
+
+</div>

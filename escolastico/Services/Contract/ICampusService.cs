@@ -6,6 +6,6 @@ namespace escolastico.Services.Contract
     {
         Task<List<Campus>> GetCampusList();
         Task<string> GenerateNextId();
-        Task<Campus> NewRegister(Campus newRegister);
+        Task<Campus> NewRegister(Campus newRegister, string usuarioActual);
     }
 }
